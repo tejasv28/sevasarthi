@@ -180,7 +180,7 @@ public class BookingController {
 
         if ("completed".equals(status)) {
             providerRepository.findById(booking.getProviderId()).ifPresent(p -> {
-                p.setJobsCompleted((p.getJobsCompleted() != null ? p.getJobsCompleted() : 0) + 1);
+                p.setJobsCompleted(p.getJobsCompleted() + 1);
                 providerRepository.save(p);
             });
         }

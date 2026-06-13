@@ -22,7 +22,7 @@ public class Review {
     private String providerId; // Maps to Provider ObjectId
     private String bookingId; // Maps to Booking ObjectId
     
-    private int rating;
+    private Integer rating;
     
     @Builder.Default
     private String comment = "";

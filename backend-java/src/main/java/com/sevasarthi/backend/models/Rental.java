@@ -22,7 +22,7 @@ public class Rental {
     private String toolId; // Maps to Tool ObjectId
     
     private String toolName;
-    private int days;
+    private Integer days;
     
     private double subtotal;
     

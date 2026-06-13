@@ -37,13 +37,13 @@ public class Coupon {
     private Double discountValue;
     
     @Builder.Default
-    private double minOrderAmount = 0;
+    private Double minOrderAmount = 0.0;
     
     private Double maxDiscount; // null means no cap
     private Integer maxUses; // null means unlimited
     
     @Builder.Default
-    private int usedCount = 0;
+    private Integer usedCount = 0;
     
     @Builder.Default
     private boolean isActive = true;

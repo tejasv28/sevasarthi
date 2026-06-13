@@ -9,7 +9,9 @@ import java.util.List;
 @Repository
 public interface BookingRepository extends MongoRepository<Booking, String> {
     List<Booking> findByUserId(String userId);
+    long countByUserId(String userId);
     List<Booking> findByProviderId(String providerId);
+    long countByProviderId(String providerId);
     List<Booking> findByStatus(String status);
     
     org.springframework.data.domain.Page<Booking> findByUserId(String userId, org.springframework.data.domain.Pageable pageable);

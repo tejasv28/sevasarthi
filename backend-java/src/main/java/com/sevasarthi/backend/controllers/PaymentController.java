@@ -133,14 +133,25 @@ public class PaymentController {
         Number totalAmountNum = (Number) payload.get("totalAmount");
         Number baseRateNum = (Number) payload.get("baseRate");
 
+        java.util.Date parsedDate = new java.util.Date();
+        try {
+            if (payload.get("scheduledDate") != null) {
+                parsedDate = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX").parse((String) payload.get("scheduledDate"));
+            }
+        } catch (Exception e) {
+            try {
+                parsedDate = new java.text.SimpleDateFormat("yyyy-MM-dd").parse((String) payload.get("scheduledDate"));
+            } catch (Exception e2) {}
+        }
+
         Booking booking = Booking.builder()
                 .userId(currentUser.getId())
                 .providerId(providerOpt.get().getId())
                 .serviceId((String) payload.get("serviceId"))
                 .serviceName((String) payload.get("serviceName"))
-                .scheduledDate((String) payload.get("scheduledDate"))
+                .scheduledDate(parsedDate)
                 .scheduledTime((String) payload.get("scheduledTime"))
-                .address((Map<String, Object>) payload.get("address"))
+                .address(payload.get("address") instanceof String ? (String) payload.get("address") : String.valueOf(payload.get("address")))
                 .instructions((String) payload.get("instructions"))
                 .photos((List<String>) payload.get("photos"))
                 .paymentMethod("online")
@@ -177,6 +188,19 @@ public class PaymentController {
         double refundableDeposit = Math.max(500, Math.round(subtotal * 0.4));
         double total = subtotal + deliveryFee + tax;
 
+        Map<String, Object> ddMap = (Map<String, Object>) payload.get("deliveryDetails");
+        Rental.DeliveryDetails deliveryDetails = null;
+        if (ddMap != null) {
+            deliveryDetails = Rental.DeliveryDetails.builder()
+                .addressLine1((String) ddMap.get("addressLine1"))
+                .addressLine2((String) ddMap.get("addressLine2"))
+                .city((String) ddMap.get("city"))
+                .pincode((String) ddMap.get("pincode"))
+                .phone((String) ddMap.get("phone"))
+                .fullName((String) ddMap.get("fullName"))
+                .build();
+        }
+
         Rental rental = Rental.builder()
                 .userId(currentUser.getId())
                 .toolId(tool.getId())
@@ -187,7 +211,7 @@ public class PaymentController {
                 .tax(tax)
                 .refundableDeposit(refundableDeposit)
                 .total(total)
-                .deliveryDetails((Map<String, Object>) payload.get("deliveryDetails"))
+                .deliveryDetails(deliveryDetails)
                 .status("confirmed")
                 .deliveryOtp("123456") // Mock OTP
                 .returnOtp("654321")   // Mock OTP

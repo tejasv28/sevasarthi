@@ -31,7 +31,7 @@ public class Tool {
     @Builder.Default
     private String condition = "Good";
     
-    private double dailyRate;
+    private Double dailyRate;
     
     @Builder.Default
     private String image = "";

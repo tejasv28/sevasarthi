@@ -62,7 +62,7 @@ public class Provider {
     private String experience = "1 yr";
     
     @Builder.Default
-    private double pricePerHour = 0;
+    private Double pricePerHour = 0.0;
 
     // Ratings & Stats
     @Builder.Default

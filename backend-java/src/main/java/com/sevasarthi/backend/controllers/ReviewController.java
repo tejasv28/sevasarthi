@@ -75,8 +75,8 @@ public class ReviewController {
                     .body(new ApiResponse<>(403, null, "You can only review a job after it is completed."));
         }
 
-        List<Review> existingReviews = reviewRepository.findByBookingId(request.getBookingId());
-        if (!existingReviews.isEmpty()) {
+        Optional<Review> existingReview = reviewRepository.findByBookingId(request.getBookingId());
+        if (existingReview.isPresent()) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body(new ApiResponse<>(409, null, "You have already reviewed this job."));
         }
@@ -99,7 +99,7 @@ public class ReviewController {
         String ratingKey = String.valueOf(request.getRating());
         provider.getRatingBreakdown().put(ratingKey, provider.getRatingBreakdown().getOrDefault(ratingKey, 0) + 1);
         
-        provider.setReviewCount((provider.getReviewCount() != null ? provider.getReviewCount() : 0) + 1);
+        provider.setReviewCount(provider.getReviewCount() + 1);
 
         double totalStars = 0;
         for (int i = 1; i <= 5; i++) {

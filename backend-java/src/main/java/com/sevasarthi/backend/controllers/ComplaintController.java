@@ -75,7 +75,7 @@ public class ComplaintController {
         String type = request.getType();
         String category = request.getCategory();
 
-        if (!Constants.ComplaintType.SERVICE_BOOKING.equals(type) && !Constants.ComplaintType.TOOL_RENTAL.equals(type)) {
+        if (!Constants.ComplaintTypes.SERVICE_BOOKING.equals(type) && !Constants.ComplaintTypes.TOOL_RENTAL.equals(type)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ApiResponse<>(400, null, "Invalid complaint type."));
         }
@@ -83,7 +83,7 @@ public class ComplaintController {
         String providerId = null;
         String referenceLabel = "";
 
-        if (Constants.ComplaintType.SERVICE_BOOKING.equals(type)) {
+        if (Constants.ComplaintTypes.SERVICE_BOOKING.equals(type)) {
             if (request.getBookingId() == null) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, null, "Booking ID is required."));
             }
@@ -95,7 +95,7 @@ public class ComplaintController {
             }
             providerId = booking.getProviderId();
             referenceLabel = booking.getServiceName() != null ? booking.getServiceName() : "Service Booking";
-        } else if (Constants.ComplaintType.TOOL_RENTAL.equals(type)) {
+        } else if (Constants.ComplaintTypes.TOOL_RENTAL.equals(type)) {
             if (request.getRentalId() == null) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, null, "Rental ID is required."));
             }
@@ -112,8 +112,8 @@ public class ComplaintController {
         Complaint complaint = Complaint.builder()
                 .userId(currentUser.getId())
                 .type(type)
-                .bookingId(Constants.ComplaintType.SERVICE_BOOKING.equals(type) ? request.getBookingId() : null)
-                .rentalId(Constants.ComplaintType.TOOL_RENTAL.equals(type) ? request.getRentalId() : null)
+                .bookingId(Constants.ComplaintTypes.SERVICE_BOOKING.equals(type) ? request.getBookingId() : null)
+                .rentalId(Constants.ComplaintTypes.TOOL_RENTAL.equals(type) ? request.getRentalId() : null)
                 .providerId(providerId)
                 .category(category)
                 .description(request.getDescription())
@@ -123,7 +123,7 @@ public class ComplaintController {
                 .createdAt(new Date())
                 .build();
 
-        complaint.getStatusHistory().add(Complaint.StatusHistoryEntry.builder()
+        complaint.getStatusHistory().add(Complaint.StatusHistory.builder()
                 .status(Constants.ComplaintStatus.PENDING)
                 .note("Complaint submitted by customer.")
                 .timestamp(new Date())
@@ -205,16 +205,16 @@ public class ComplaintController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, null, "Only resolved or rejected complaints can be reopened."));
         }
 
-        if (complaint.getReopenCount() != null && complaint.getReopenCount() >= 3) {
+        if (complaint.getReopenCount() >= 3) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, null, "Maximum reopen limit (3) reached. Please contact support directly."));
         }
 
         complaint.setStatus(Constants.ComplaintStatus.REOPENED);
-        complaint.setReopenCount((complaint.getReopenCount() != null ? complaint.getReopenCount() : 0) + 1);
+        complaint.setReopenCount(complaint.getReopenCount() + 1);
         complaint.setReopenReason(body.get("reason") != null ? body.get("reason") : "Customer reopened the complaint.");
         complaint.setResolvedAt(null);
         
-        complaint.getStatusHistory().add(Complaint.StatusHistoryEntry.builder()
+        complaint.getStatusHistory().add(Complaint.StatusHistory.builder()
                 .status(Constants.ComplaintStatus.REOPENED)
                 .note(body.get("reason") != null ? body.get("reason") : "Reopened by customer.")
                 .changedBy(currentUser.getId())
@@ -329,7 +329,7 @@ public class ComplaintController {
         if (adminResponse != null) complaint.setAdminResponse(adminResponse);
         if (Constants.ComplaintStatus.RESOLVED.equals(status)) complaint.setResolvedAt(new Date());
 
-        complaint.getStatusHistory().add(Complaint.StatusHistoryEntry.builder()
+        complaint.getStatusHistory().add(Complaint.StatusHistory.builder()
                 .status(status)
                 .note(adminResponse != null ? adminResponse : "Status updated to " + status + " by admin.")
                 .changedBy(currentUser.getId())
@@ -371,7 +371,7 @@ public class ComplaintController {
 
         complaint.setAdminAction(action);
         complaint.setActionDetails(details);
-        complaint.getStatusHistory().add(Complaint.StatusHistoryEntry.builder()
+        complaint.getStatusHistory().add(Complaint.StatusHistory.builder()
                 .status(complaint.getStatus())
                 .note(actionNote)
                 .changedBy(currentUser.getId())

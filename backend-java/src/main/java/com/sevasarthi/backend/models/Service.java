@@ -26,7 +26,7 @@ public class Service {
     @Builder.Default
     private String icon = "home_repair_service";
     
-    private double basePrice;
+    private Double basePrice;
     
     @Builder.Default
     private String image = "";

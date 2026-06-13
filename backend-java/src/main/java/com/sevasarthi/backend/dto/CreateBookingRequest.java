@@ -15,8 +15,10 @@ public class CreateBookingRequest {
     private List<String> photos;
     private String paymentMethod;
     private String couponCode;
-    private double baseRate;
-    private double discount;
-    private double tax;
-    private double totalAmount;
+    private String serviceName;
+    private Double platformFee;
+    private Double baseRate;
+    private Double discount;
+    private Double tax;
+    private Double totalAmount;
 }
