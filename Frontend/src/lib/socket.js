@@ -32,8 +32,8 @@ class SocketService {
     this.client.onConnect = (frame) => {
       console.log('✅ STOMP connected:', frame);
       
-      // We subscribe to a user-specific queue or a generic events topic where 
-      // the backend can push { event: 'name', data: payload }
+      
+      
       this.client.subscribe('/user/queue/events', (message) => {
         if (message.body) {
           try {

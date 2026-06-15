@@ -22,7 +22,7 @@ export const useBookingStore = create((set, get) => ({
   createBooking: async (bookingData) => {
     set({ loading: true, error: null });
 
-    // Handle Offline Scenario
+    
     if (!navigator.onLine) {
       console.log('User is offline, queueing booking...');
       const offlineBooking = {
@@ -42,7 +42,7 @@ export const useBookingStore = create((set, get) => ({
           loading: false,
         }));
         
-        // Let the caller know it was queued
+        
         return { ...offlineBooking, isOffline: true };
       } catch (err) {
         set({ error: 'Failed to queue offline booking', loading: false });
@@ -91,12 +91,12 @@ export const useBookingStore = create((set, get) => ({
 
       for (const booking of queue) {
         try {
-          // Remove the temporary fields before sending to server
+          
           const { _id, status, isOffline, createdAt, ...payload } = booking;
           const response = await api.post('/bookings', payload);
           
           if (response.success) {
-            // Remove from local state and add the real one
+            
             set((state) => ({
               bookings: [
                 response.data.booking,
@@ -104,11 +104,11 @@ export const useBookingStore = create((set, get) => ({
               ]
             }));
           } else {
-            remainingQueue.push(booking); // Keep if failed for non-network reason
+            remainingQueue.push(booking); 
           }
         } catch (err) {
            console.error('Failed to sync booking', err);
-           remainingQueue.push(booking); // keep in queue if network failed
+           remainingQueue.push(booking); 
         }
       }
 

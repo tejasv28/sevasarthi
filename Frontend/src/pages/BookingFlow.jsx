@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import React, { useMemo, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -97,7 +97,7 @@ export default function BookingFlow() {
         let [hours, minutes] = timeStr.split(':').map(Number);
         if (hours === 12) hours = 0;
         if (modifier === 'PM') hours += 12;
-        // Add a 1 hour buffer for same day booking
+        
         return (hours * 60 + minutes) > (currentHour * 60 + currentMinutes + 60);
       });
       return {
@@ -159,7 +159,7 @@ export default function BookingFlow() {
       totalAmount: total,
     };
 
-    // ── Cash / Pay After Service flow ─────────────────────────
+    
     if (paymentMethod === 'cash_after_service') {
       toast.loading('Processing your booking...', { id: 'BOOKING' });
       try {
@@ -173,7 +173,7 @@ export default function BookingFlow() {
       return;
     }
 
-    // ── Online Payment (Razorpay) flow ────────────────────────
+    
     setIsProcessingPayment(true);
     toast.loading('Initiating payment...', { id: 'BOOKING' });
 
@@ -213,7 +213,7 @@ export default function BookingFlow() {
         setAppliedCoupon({
           code: res.data.code,
           discount: res.data.discount,
-          type: 'amount' // the backend already calculates the flat discount value
+          type: 'amount' 
         });
         setCouponCode(res.data.code);
         toast.success(`Coupon applied! ₹${res.data.discount} off.`);
@@ -232,10 +232,10 @@ export default function BookingFlow() {
     toast('Coupon removed', { icon: '🗑️' });
   };
 
-  // Cost Breakdown Logic
+  
   const baseRate = stateBasePrice || provider?.pricePerHour || 0;
   const platformFee = 50.00;
-  const taxRate = 0.05; // 5% GST
+  const taxRate = 0.05; 
   
   let discountAmount = 0;
   if (appliedCoupon) {
@@ -263,7 +263,7 @@ export default function BookingFlow() {
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[80px] -z-10 translate-x-1/2 -translate-y-1/2" />
       
       <main className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Progress Tracker */}
+        {}
         <div className="flex items-center justify-center mb-12 max-w-lg mx-auto">
           {[1, 2, 3].map((num) => (
             <React.Fragment key={num}>
@@ -420,7 +420,7 @@ export default function BookingFlow() {
                     <p className="section-subheading !mt-1 !text-base">{t('book_summary')}</p>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Summary Cards */}
+                    {}
                     <div className="flex items-start gap-4 p-5 bg-surface border border-slate-200/80 rounded-2xl shadow-sm">
                       <div className="w-12 h-12 bg-accent/10 text-accent-dark rounded-xl flex items-center justify-center flex-shrink-0"><span className="material-symbols-outlined text-[24px]">event_available</span></div>
                       <div>
@@ -437,7 +437,7 @@ export default function BookingFlow() {
                     </div>
                   </div>
 
-                  {/* Coupons Section (Moved to Main Column) */}
+                  {}
                   <div className="card p-6 md:p-8">
                     <h4 className="font-bold text-brand mb-4 text-lg">{t('book_offers_coupons')}</h4>
                     {!appliedCoupon ? (
@@ -472,7 +472,7 @@ export default function BookingFlow() {
                       </div>
                     )}
                     
-                    {/* Eligible Coupons List */}
+                    {}
                     {!appliedCoupon && eligibleCoupons.length > 0 && (
                       <div className="mt-6 space-y-3">
                         <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">{t('book_available_offers')}</p>
@@ -507,7 +507,7 @@ export default function BookingFlow() {
                     )}
                   </div>
 
-                  {/* Payment Method */}
+                  {}
                   <div className="card p-6 md:p-8">
                     <h4 className="font-bold text-brand mb-4 text-lg">{t('book_step_payment')}</h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -555,13 +555,13 @@ export default function BookingFlow() {
             </AnimatePresence>
           </div>
 
-          {/* Business Model & Cost Sidebar */}
+          {}
           {step === 3 && (
             <aside className="lg:col-span-4 lg:sticky lg:top-28">
               <div className="card p-6 border-slate-200/60 shadow-sm relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-brand"></div>
               
-              {/* Provider Info */}
+              {}
               <div className="flex items-center gap-4 border-b border-slate-100 pb-6 mb-6 mt-2">
                 <div className="w-16 h-16 rounded-2xl overflow-hidden border border-slate-200 flex-shrink-0 shadow-sm">
                   <img alt="Provider" className="w-full h-full object-cover" src={proAvatar} />
@@ -574,7 +574,7 @@ export default function BookingFlow() {
                   </div>
                 </div>
               </div>
-              {/* Coupons removed from sidebar to prevent users from missing them */}              {/* Cost Breakdown */}
+              {}              {}
               <div className="space-y-3 text-sm font-medium">
                 <div className="flex justify-between items-center">
                   <span className="text-slate-500 flex items-center gap-1.5"><span className="material-symbols-outlined text-[16px]">info</span> {t('book_base_price')}</span>
@@ -606,7 +606,7 @@ export default function BookingFlow() {
                 </div>
               </div>
 
-              {/* Trust Badge */}
+              {}
               <div className="mt-6 bg-surface-muted border border-slate-200/60 p-4 rounded-xl flex gap-3 items-center">
                 <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-sm border border-slate-100">
                   <span className="material-symbols-outlined text-brand text-xl" style={{fontVariationSettings:"'FILL' 1"}}>shield</span>
@@ -621,7 +621,7 @@ export default function BookingFlow() {
         </div>
       </main>
       
-      {/* Custom styles for DayPicker to match premium theme */}
+      {}
       <style>{`
         .custom-daypicker {
           --rdp-cell-size: 40px;

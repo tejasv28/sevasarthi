@@ -8,8 +8,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class OtpService {
 
-    // Simple in-memory store for OTPs (matches Node.js global._userOtpStore)
-    // In production, consider using Redis
+    
+    
     private final Map<String, OtpData> otpStore = new ConcurrentHashMap<>();
 
     public static class OtpData {
@@ -27,7 +27,7 @@ public class OtpService {
 
     public String generateOtp(String key) {
         String otp = String.valueOf((int) (Math.random() * 900000) + 100000);
-        long expires = System.currentTimeMillis() + (10 * 60 * 1000); // 10 minutes
+        long expires = System.currentTimeMillis() + (10 * 60 * 1000); 
         otpStore.put(key, new OtpData(otp, expires));
         return otp;
     }

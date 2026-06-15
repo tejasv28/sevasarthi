@@ -18,7 +18,7 @@ export const useToolStore = create((set) => ({
       const url = `/tools${params.toString() ? `?${params.toString()}` : ''}`;
       const response = await api.get(url);
       if (response.success) {
-        // Normalize tools for frontend consumption
+        
         const normalized = response.data.tools.map(t => ({
           ...t,
           id: t._id,

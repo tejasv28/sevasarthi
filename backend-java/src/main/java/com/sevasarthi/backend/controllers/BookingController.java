@@ -47,7 +47,7 @@ public class BookingController {
     }
 
     private String generateOtp() {
-        return String.valueOf((int)(Math.random() * 9000) + 1000); // 4 digit OTP
+        return String.valueOf((int)(Math.random() * 9000) + 1000); 
     }
 
     @PostMapping
@@ -263,13 +263,13 @@ public class BookingController {
         Booking booking = bookingOpt.get();
         Optional<Provider> currentProviderOpt = providerRepository.findById(booking.getProviderId());
         
-        // Find another available provider in the same category
+        
         String category = currentProviderOpt.map(Provider::getCategory).orElse("Home Maintenance");
         
-        // This is a simplified fetch, ideally handled with MongoTemplate to sort by rating and ignore current provider
+        
         Optional<Provider> newProviderOpt = providerRepository.findAll().stream()
                 .filter(p -> p.isAvailable() && category.equals(p.getCategory()) && !p.getId().equals(booking.getProviderId()))
-                .findFirst(); // Replace with properly sorted mongo query later if needed
+                .findFirst(); 
 
         if (newProviderOpt.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)

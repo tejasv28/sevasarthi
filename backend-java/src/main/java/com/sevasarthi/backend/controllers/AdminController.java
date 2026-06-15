@@ -306,7 +306,7 @@ public class AdminController {
             }
 
             Map<String, Object> dayStat = new HashMap<>();
-            dayStat.put("day", dayNames[dateLocal.getDayOfWeek().getValue() % 7]); // Java DayOfWeek: 1=Mon, 7=Sun
+            dayStat.put("day", dayNames[dateLocal.getDayOfWeek().getValue() % 7]); 
             dayStat.put("date", dateLocal.toString());
             dayStat.put("bookings", bookingCount);
             dayStat.put("revenue", revenue);

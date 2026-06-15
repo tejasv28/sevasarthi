@@ -19,9 +19,9 @@ public class Booking {
     @Id
     private String id;
     
-    private String userId; // Maps to User ObjectId
-    private String providerId; // Maps to Provider ObjectId
-    private String serviceId; // Maps to Service ObjectId
+    private String userId; 
+    private String providerId; 
+    private String serviceId; 
     
     @Builder.Default
     private String serviceName = "";

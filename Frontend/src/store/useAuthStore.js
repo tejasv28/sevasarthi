@@ -8,7 +8,7 @@ export const useAuthStore = create(
       currentUser: null,
       token: null,
       refreshToken: null,
-      providerStatus: null, // 'pending' | 'approved' | 'rejected' | null
+      providerStatus: null, 
       authLoading: false,
       error: null,
 
@@ -82,7 +82,7 @@ export const useAuthStore = create(
         }
       },
 
-      // Provider OTP
+      
       sendProviderOtp: async (email) => {
         set({ authLoading: true, error: null });
         try {
@@ -107,7 +107,7 @@ export const useAuthStore = create(
         }
       },
 
-      // User signup OTP
+      
       sendUserOtp: async (type, emailOrPhone) => {
         set({ authLoading: true, error: null });
         try {
@@ -142,7 +142,7 @@ export const useAuthStore = create(
         try {
           await api.post('/auth/logout');
         } catch (err) {
-          // Ignore logout errors
+          
         } finally {
           set({ currentUser: null, token: null, refreshToken: null, providerStatus: null, error: null });
         }

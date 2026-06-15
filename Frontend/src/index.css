@@ -13,12 +13,12 @@
 
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    color: #0F172A; /* brand */
-    background-color: #F8FAFC; /* surface-muted */
+    color: #0F172A; 
+    background-color: #F8FAFC; 
     min-height: 100vh;
   }
 
-  /* Subtle ultra-premium noise texture for depth */
+  
   body::before {
     content: '';
     position: fixed;
@@ -85,7 +85,7 @@
     @apply text-slate-500 font-medium mt-3 text-lg md:text-xl max-w-2xl;
   }
 
-  /* Badge styling */
+  
   .badge {
     @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold;
   }

@@ -34,10 +34,10 @@ public class Service {
     @Builder.Default
     private boolean isActive = true;
     
-    private String providerId; // Maps to User ObjectId
+    private String providerId; 
     
     @Builder.Default
-    private String approvalStatus = "approved"; // pending, approved, rejected
+    private String approvalStatus = "approved"; 
     
     @Builder.Default
     private String rejectionReason = "";

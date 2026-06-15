@@ -16,7 +16,7 @@ export const useLanguageStore = create(
       },
 
       toggleLanguage: () => {
-        // Obsolete, keeping for backwards compatibility. Layout uses setLanguage now.
+        
         const nextLang = get().language === 'en' ? 'hi' : 'en';
         document.documentElement.lang = nextLang;
         set({ language: nextLang });

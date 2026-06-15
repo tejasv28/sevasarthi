@@ -23,11 +23,11 @@ public class Complaint {
     
     private String ticketId;
     
-    private String userId; // Maps to User ObjectId
+    private String userId; 
     private String type;
-    private String bookingId; // Maps to Booking ObjectId
-    private String rentalId; // Maps to Rental ObjectId
-    private String providerId; // Maps to Provider ObjectId
+    private String bookingId; 
+    private String rentalId; 
+    private String providerId; 
     
     private String category;
     private String description;
@@ -36,7 +36,7 @@ public class Complaint {
     private String proofImage = "";
     
     @Builder.Default
-    private String status = "pending"; // pending, in_review, resolved, rejected, reopened, escalated
+    private String status = "pending"; 
     
     @Builder.Default
     private String adminResponse = "";
@@ -73,6 +73,6 @@ public class Complaint {
         @Builder.Default
         private String note = "";
         
-        private String changedBy; // Maps to User ObjectId
+        private String changedBy; 
     }
 }

@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/> 
 	</parent>
 	<groupId>com.sevasarthi</groupId>
 	<artifactId>backend</artifactId>
@@ -64,7 +64,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- JWT dependencies -->
+		
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
@@ -83,7 +83,7 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- Razorpay -->
+		
 		<dependency>
 			<groupId>com.razorpay</groupId>
 			<artifactId>razorpay-java</artifactId>

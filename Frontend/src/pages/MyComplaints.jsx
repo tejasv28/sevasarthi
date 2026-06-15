@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -55,7 +55,7 @@ export default function MyComplaints() {
     fetchMyComplaints({ status: statusFilter });
   }, [statusFilter, fetchMyComplaints]);
 
-  // Listen for real-time complaint updates
+  
   useEffect(() => {
     const handleUpdate = () => {
       fetchMyComplaints({ status: statusFilter });
@@ -82,7 +82,7 @@ export default function MyComplaints() {
 
   return (
     <div className="min-h-[calc(100vh-5rem)] bg-surface-muted pb-24">
-      {/* Header */}
+      {}
       <header className="bg-brand pt-10 pb-14 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/10 rounded-full translate-y-1/2 -translate-x-1/3" />
@@ -102,7 +102,7 @@ export default function MyComplaints() {
       </header>
 
       <div className="section-container -mt-6 relative z-10">
-        {/* Status Filter Tabs */}
+        {}
         <div className="bg-surface rounded-2xl shadow-card border border-slate-200/60 p-2 flex gap-1 overflow-x-auto no-scrollbar mb-8">
           {STATUS_TABS.map((tab) => (
             <button
@@ -118,7 +118,7 @@ export default function MyComplaints() {
           ))}
         </div>
 
-        {/* Complaints List */}
+        {}
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20">
             <svg className="animate-spin h-10 w-10 text-brand mb-4" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>
@@ -161,17 +161,17 @@ export default function MyComplaints() {
                     transition={{ delay: idx * 0.04 }}
                     className="bg-surface rounded-2xl shadow-card border border-slate-200/60 overflow-hidden"
                   >
-                    {/* Card Header */}
+                    {}
                     <button
                       onClick={() => setExpandedId(isExpanded ? null : c._id)}
                       className="w-full p-5 md:p-6 text-left flex items-center gap-4 hover:bg-slate-50/50 transition-colors"
                     >
-                      {/* Type Icon */}
+                      {}
                       <div className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 ${isServiceType ? 'bg-blue-50 text-blue-600' : 'bg-teal-50 text-teal-600'}`}>
                         <span className="material-symbols-outlined text-[22px]">{isServiceType ? 'home_repair_service' : 'construction'}</span>
                       </div>
 
-                      {/* Info */}
+                      {}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap mb-1">
                           <span className="text-[10px] font-bold text-slate-400 tracking-widest">{c.ticketId}</span>
@@ -188,7 +188,7 @@ export default function MyComplaints() {
                         <p className="text-xs text-slate-500 font-medium truncate">{refTitle} • {providerName}</p>
                       </div>
 
-                      {/* Date & Expand */}
+                      {}
                       <div className="flex items-center gap-3 flex-shrink-0">
                         <span className="text-xs font-semibold text-slate-400 hidden sm:block">
                           {new Date(c.createdAt).toLocaleDateString()}
@@ -202,7 +202,7 @@ export default function MyComplaints() {
                       </div>
                     </button>
 
-                    {/* Expanded Detail */}
+                    {}
                     <AnimatePresence>
                       {isExpanded && (
                         <motion.div
@@ -213,7 +213,7 @@ export default function MyComplaints() {
                           className="overflow-hidden"
                         >
                           <div className="px-5 md:px-6 pb-6 border-t border-slate-100 pt-5 space-y-5">
-                            {/* Description */}
+                            {}
                             <div>
                               <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Description</p>
                               <p className="text-sm text-slate-700 font-medium leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-100">
@@ -221,7 +221,7 @@ export default function MyComplaints() {
                               </p>
                             </div>
 
-                            {/* Proof Image */}
+                            {}
                             {c.proofImage && (
                               <div>
                                 <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Proof Attached</p>
@@ -234,7 +234,7 @@ export default function MyComplaints() {
                               </div>
                             )}
 
-                            {/* Admin Response */}
+                            {}
                             {c.adminResponse && (
                               <div className="bg-blue-50 border border-blue-100 rounded-xl p-4">
                                 <div className="flex items-center gap-2 mb-2">
@@ -245,7 +245,7 @@ export default function MyComplaints() {
                               </div>
                             )}
 
-                            {/* Admin Action */}
+                            {}
                             {actionInfo && (
                               <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
                                 <div className="flex items-center gap-2 mb-1">
@@ -256,7 +256,7 @@ export default function MyComplaints() {
                               </div>
                             )}
 
-                            {/* Status History Timeline */}
+                            {}
                             {c.statusHistory && c.statusHistory.length > 0 && (
                               <div>
                                 <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Status Timeline</p>
@@ -287,7 +287,7 @@ export default function MyComplaints() {
                               </div>
                             )}
 
-                            {/* Reopen Action */}
+                            {}
                             {['resolved', 'rejected'].includes(c.status) && c.reopenCount < 3 && (
                               <div className="pt-2">
                                 {reopenId === c._id ? (
@@ -338,7 +338,7 @@ export default function MyComplaints() {
           </div>
         )}
 
-        {/* Pagination */}
+        {}
         {pagination.pages > 1 && (
           <div className="mt-8 flex justify-center items-center gap-2">
             <button
@@ -370,7 +370,7 @@ export default function MyComplaints() {
         )}
       </div>
 
-      {/* Lightbox */}
+      {}
       <AnimatePresence>
         {lightboxImage && (
           <motion.div

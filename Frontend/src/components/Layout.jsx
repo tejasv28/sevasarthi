@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/set-state-in-effect, no-unused-vars */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../store/useAuthStore';
@@ -9,7 +9,7 @@ import { useProviderStore } from '../store/useProviderStore';
 import { motion, AnimatePresence } from 'framer-motion';
 import { heroCategories, getCategoryItems, toolCategoriesMap, allCategories } from '../lib/constants';
 
-// Derive dashboard path from role (DB field may be stale for seeded users)
+
 const getDashboardPath = (user) => {
   if (!user) return '/';
   if (user.role === 'provider') return '/provider/dashboard';
@@ -76,7 +76,7 @@ export default function Layout({ children }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close mobile menu on route change
+  
   useEffect(() => {
     setMobileOpen(false);
     setShowNotifications(false);
@@ -85,7 +85,7 @@ export default function Layout({ children }) {
     setShowLocationPicker(false);
   }, [location.pathname]);
 
-  // Click outside to close notifications, language picker and profile menu
+  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (notifRef.current && !notifRef.current.contains(event.target)) {
@@ -173,7 +173,7 @@ export default function Layout({ children }) {
       }
       setNavSearchQuery('');
     } else {
-      // Fallback
+      
       navigate('/services', { state: { query: navSearchQuery } });
       setNavSearchQuery('');
     }
@@ -193,9 +193,9 @@ export default function Layout({ children }) {
 
   return (
     <div className="min-h-screen flex flex-col relative">
-      {/* Session Warning Modal is now handled globally in SessionManager */}
+      {}
 
-      {/* Navigation */}
+      {}
       <nav
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           scrolled || !isLanding
@@ -206,7 +206,7 @@ export default function Layout({ children }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-2 h-14">
             
-            {/* ── Left: Logo & Links ── */}
+            {}
             <div className="flex items-center gap-3 shrink-0">
               <Link to="/" className="flex items-center transition-transform hover:scale-[1.02] active:scale-[0.98]">
                 <img src="/logo.svg" alt="Seva Sarthi Logo" className="h-11 w-auto" />
@@ -351,7 +351,7 @@ export default function Layout({ children }) {
               </div>
             </div>
 
-            {/* ── Middle: Search Bar ── */}
+            {}
             <div className="hidden md:flex flex-grow mx-4">
               <div className={`flex items-center w-full bg-slate-50 border rounded-xl overflow-hidden transition-all h-10 relative ${isListening ? 'border-amber-500 bg-white ring-4 ring-amber-500/10' : 'border-slate-200 focus-within:border-amber-500 focus-within:bg-white focus-within:ring-4 focus-within:ring-amber-500/10'}`}>
                 <span className="material-symbols-outlined pl-4 text-slate-400 text-[18px] shrink-0">search</span>
@@ -370,7 +370,7 @@ export default function Layout({ children }) {
                     }}
                   />
                   
-                  {/* Dynamic Animated Placeholder Overlay */}
+                  {}
                   {!navSearchQuery && !isListening && (
                     <div className="absolute left-3 right-4 pointer-events-none flex items-center gap-1.5 text-sm overflow-hidden">
                       <span className="text-slate-400 font-medium shrink-0">{t('nav_search_for')}</span>
@@ -398,7 +398,7 @@ export default function Layout({ children }) {
                   )}
                 </div>
 
-                {/* AI Search Button */}
+                {}
                 {isAiSearching ? (
                   <div className="p-2 mr-1 flex items-center justify-center shrink-0">
                     <div className="w-4 h-4 border-2 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
@@ -415,7 +415,7 @@ export default function Layout({ children }) {
                   </button>
                 )}
 
-                {/* Voice Search Button */}
+                {}
                 <button 
                   type="button"
                   onClick={toggleListening}
@@ -433,10 +433,10 @@ export default function Layout({ children }) {
               </div>
             </div>
 
-            {/* ── Right: Profile ── */}
+            {}
             <div className="hidden md:flex items-center gap-4 shrink-0">
 
-              {/* Language Picker */}
+              {}
               <div className="relative language-picker">
                 <button
                   onClick={() => setShowLanguagePicker(!showLanguagePicker)}
@@ -472,7 +472,7 @@ export default function Layout({ children }) {
                 </AnimatePresence>
               </div>
               
-              {/* Notifications */}
+              {}
               {currentUser && (
                 <div className="relative" ref={notifRef}>
                   <button
@@ -539,7 +539,7 @@ export default function Layout({ children }) {
                 </div>
               )}
 
-              {/* Profile / Auth */}
+              {}
               <div className="relative" ref={profileRef}>
                 {currentUser ? (
                   <>
@@ -637,7 +637,7 @@ export default function Layout({ children }) {
               </div>
             </div>
 
-            {/* Mobile menu button */}
+            {}
             <div className="flex items-center gap-3 md:hidden">
               <div className="relative language-picker">
                  <button onClick={() => setShowLanguagePicker(!showLanguagePicker)} className="p-2 text-sm font-bold text-slate-600 flex items-center gap-1">
@@ -667,7 +667,7 @@ export default function Layout({ children }) {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {}
         <AnimatePresence>
           {mobileOpen && (
             <motion.div 
@@ -699,15 +699,15 @@ export default function Layout({ children }) {
         </AnimatePresence>
       </nav>
 
-      {/* Main Content */}
+      {}
       <div className="pt-20 flex-1 flex flex-col">{children}</div>
 
-      {/* Footer */}
+      {}
       {!isAuth && (
         <footer className="bg-surface border-t border-slate-200 mt-auto">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-              {/* Brand */}
+              {}
               <div className="md:col-span-1">
                 <Link to="/" className="inline-block mb-6 transition-transform hover:scale-[1.02]">
                   <img src="/logo.svg" alt="Seva Sarthi Logo" className="h-16 w-auto drop-shadow-sm" />
@@ -725,7 +725,7 @@ export default function Layout({ children }) {
                 </div>
               </div>
 
-              {/* Links */}
+              {}
               <div>
                 <h4 className="font-bold text-brand font-headline mb-5 text-sm uppercase tracking-widest">{t('footer_company')}</h4>
                 <ul className="space-y-4">
@@ -752,7 +752,7 @@ export default function Layout({ children }) {
               </div>
             </div>
 
-            {/* App Store and Payment Badges */}
+            {}
             <div className="mt-12 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-slate-200/60 pt-10">
               <div className="flex gap-4">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" className="h-10 cursor-pointer hover:opacity-80 transition-opacity" />

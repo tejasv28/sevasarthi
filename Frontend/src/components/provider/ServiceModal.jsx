@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import toast from 'react-hot-toast';
@@ -29,7 +29,7 @@ export default function ServiceModal({ onClose, onSuccess, editData }) {
   const [dragActive, setDragActive] = useState(false);
   const inputRef = useRef(null);
 
-  // Form State
+  
   const [name, setName] = useState('');
   const [category, setCategory] = useState(SERVICE_CATEGORIES[0]);
   const [basePrice, setBasePrice] = useState('');
@@ -136,7 +136,7 @@ export default function ServiceModal({ onClose, onSuccess, editData }) {
         <motion.div onClick={e=>e.stopPropagation()} initial={{opacity:0,scale:0.95,y:20}} animate={{opacity:1,scale:1,y:0}} exit={{opacity:0,scale:0.95,y:20}}
           className="bg-surface rounded-3xl w-full max-w-3xl shadow-2xl border border-slate-200/50 overflow-hidden relative my-8 flex flex-col h-[650px]">
           
-          {/* Header & Progress */}
+          {}
           <div className="px-8 pt-8 pb-6 border-b border-slate-100 bg-white z-10 flex-shrink-0">
             <div className="flex justify-between items-start mb-6">
               <div>
@@ -163,12 +163,12 @@ export default function ServiceModal({ onClose, onSuccess, editData }) {
             </div>
           </div>
 
-          {/* Form Content Area */}
+          {}
           <div className="p-8 overflow-y-auto flex-grow bg-slate-50/50">
             <AnimatePresence custom={direction} mode="wait">
               <motion.div key={step} custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{duration:0.3, ease:"easeInOut"}} className="h-full">
                 
-                {/* STEP 1: BASICS */}
+                {}
                 {step === 1 && (
                   <div className="space-y-6">
                     <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2"><span className="material-symbols-outlined text-teal-600">info</span> Basic Information</h3>
@@ -203,7 +203,7 @@ export default function ServiceModal({ onClose, onSuccess, editData }) {
                   </div>
                 )}
 
-                {/* STEP 2: DETAILS */}
+                {}
                 {step === 2 && (
                   <div className="space-y-6">
                     <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2"><span className="material-symbols-outlined text-teal-600">payments</span> Pricing & Availability</h3>
@@ -238,7 +238,7 @@ export default function ServiceModal({ onClose, onSuccess, editData }) {
                   </div>
                 )}
 
-                {/* STEP 3: MEDIA */}
+                {}
                 {step === 3 && (
                   <div className="space-y-6 h-full flex flex-col">
                     <h3 className="text-xl font-bold text-slate-800 mb-2 flex items-center gap-2"><span className="material-symbols-outlined text-teal-600">perm_media</span> Service Image</h3>
@@ -277,13 +277,13 @@ export default function ServiceModal({ onClose, onSuccess, editData }) {
                   </div>
                 )}
 
-                {/* STEP 4: REVIEW */}
+                {}
                 {step === 4 && (
                   <div className="space-y-6">
                     <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2"><span className="material-symbols-outlined text-teal-600">visibility</span> Live Preview</h3>
                     
                     <div className="flex justify-center items-center py-4">
-                      {/* Premium Card Preview */}
+                      {}
                       <div className="w-[320px] bg-white rounded-2xl overflow-hidden shadow-xl border border-slate-200 hover:scale-[1.02] transition-transform duration-300">
                         <div className="relative h-44 bg-slate-100">
                           {image ? (
@@ -325,7 +325,7 @@ export default function ServiceModal({ onClose, onSuccess, editData }) {
             </AnimatePresence>
           </div>
 
-          {/* Footer Controls */}
+          {}
           <div className="p-6 border-t border-slate-100 bg-white z-10 flex justify-between items-center flex-shrink-0">
             {step > 1 ? (
               <button type="button" onClick={handleBack} disabled={saving} className="btn-secondary !px-6 !py-3 flex items-center gap-2 text-sm disabled:opacity-50">

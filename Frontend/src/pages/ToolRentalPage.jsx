@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import React, { useState, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../store/useAuthStore';
@@ -14,20 +14,20 @@ import { searchAndFilter } from '../lib/searchEngine';
 
 const RENTALS_STORAGE_KEY = 'sevaSarthi.rentals.v1';
 
-// Mock tools removed. Handled by backend.
+
 
 const categories = ["All", "Hand Tools", "Power Tools", "Construction", "Gardening"];
 
-// --- slide-in Cart Drawer ---
+
 function CartDrawer({ tool, onClose, onConfirm }) {
   const [days, setDays] = useState(1);
-  const [step, setStep] = useState(1); // 1: Configure, 2: Details, 3: Review, 4: Success
+  const [step, setStep] = useState(1); 
   const { t } = useLanguageStore();
 
   const scrollRef = React.useRef(null);
 
   React.useEffect(() => {
-    // Lock background scroll while drawer is open
+    
     const prevOverflow = document.body.style.overflow;
     const prevPaddingRight = document.body.style.paddingRight;
 
@@ -39,7 +39,7 @@ function CartDrawer({ tool, onClose, onConfirm }) {
 
     const drawerScrollEl = scrollRef.current;
 
-    // Hard block background scrolling for trackpad gestures (Chrome)
+    
     const blockWindowWheel = (e) => {
       const t = e.target;
       const inside = drawerScrollEl && t instanceof Node && drawerScrollEl.contains(t);
@@ -47,7 +47,7 @@ function CartDrawer({ tool, onClose, onConfirm }) {
         e.preventDefault();
         return;
       }
-      // If inside but would overscroll, prevent so remaining delta can't go to page.
+      
       const deltaY = e.deltaY;
       const atTop = drawerScrollEl.scrollTop <= 0;
       const atBottom = Math.ceil(drawerScrollEl.scrollTop + drawerScrollEl.clientHeight) >= drawerScrollEl.scrollHeight;
@@ -120,7 +120,7 @@ function CartDrawer({ tool, onClose, onConfirm }) {
 
     if (!details.deliveryDate) e.deliveryDate = 'Select a delivery date';
 
-    // Validate ID based on type
+    
     if (details.idType === 'Aadhaar') {
       const av2 = validateAadhaar(details.idNumber);
       if (!av2.valid) e.idNumber = av2.error;
@@ -151,7 +151,7 @@ function CartDrawer({ tool, onClose, onConfirm }) {
   const handleProcessPayment = () => {
     setIsPaymentProcessing(true);
 
-    // Get current user from auth store
+    
     const authStorage = localStorage.getItem('auth-storage');
     let currentUser = null;
     try {
@@ -159,7 +159,7 @@ function CartDrawer({ tool, onClose, onConfirm }) {
         const { state } = JSON.parse(authStorage);
         currentUser = state?.currentUser || null;
       }
-    } catch (e) { /* ignore */ }
+    } catch (e) {  }
 
     openRazorpayCheckout({
       amount: total,
@@ -194,7 +194,7 @@ function CartDrawer({ tool, onClose, onConfirm }) {
         setStep(4);
         setTimeout(() => {
           onConfirm({
-            _fromRazorpay: true, // signal that rental was already created
+            _fromRazorpay: true, 
             toolId: tool.id || tool._id,
             toolName: tool.name,
             days,
@@ -239,10 +239,7 @@ function CartDrawer({ tool, onClose, onConfirm }) {
           </button>
         </div>
 
-        {/*
-          IMPORTANT: Make this inner div the only scroll container.
-          This avoids wheel scrolling the page when the drawer content is lock-step with a fixed footer.
-        */}
+        {}
         <div ref={scrollRef} className="flex-grow overflow-y-auto overscroll-contain">
           {step === 1 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-6">
@@ -317,7 +314,7 @@ function CartDrawer({ tool, onClose, onConfirm }) {
                 </div>
               </div>
 
-              {/* Contact */}
+              {}
               <div>
                 <h4 className="font-black text-slate-900 mb-3">{t('tr_contact')}</h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -349,7 +346,7 @@ function CartDrawer({ tool, onClose, onConfirm }) {
                 </div>
               </div>
 
-              {/* Address */}
+              {}
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <h4 className="font-black text-slate-900">{t('tr_delivery_address')}</h4>
@@ -441,7 +438,7 @@ function CartDrawer({ tool, onClose, onConfirm }) {
                 </div>
               </div>
 
-              {/* Schedule */}
+              {}
               <div>
                 <h4 className="font-black text-slate-900 mb-3">{t('tr_delivery_schedule')}</h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -474,7 +471,7 @@ function CartDrawer({ tool, onClose, onConfirm }) {
                 </div>
               </div>
 
-              {/* Verification */}
+              {}
               <div>
                 <h4 className="font-black text-slate-900 mb-3">ID verification</h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -506,7 +503,7 @@ function CartDrawer({ tool, onClose, onConfirm }) {
                 <p className="mt-2 text-xs text-slate-500 font-medium">ID is verified at delivery pickup. We do not store sensitive documents in this demo.</p>
               </div>
 
-              {/* Notes + agreements */}
+              {}
               <div>
                 <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Delivery notes (optional)</label>
                 <textarea
@@ -640,7 +637,7 @@ function CartDrawer({ tool, onClose, onConfirm }) {
   );
 }
 
-// --- UI helpers (skeletons / states) ---
+
 function ToolCardSkeleton() {
   return (
     <div className="bg-white rounded-2xl p-4 flex flex-col border border-slate-200/60 shadow-sm animate-pulse">
@@ -667,7 +664,7 @@ function ToolCardSkeleton() {
   );
 }
 
-// ── Main Page ─────────────────────────────────────────────────────────────────
+
 export default function ToolRentalPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -742,7 +739,7 @@ export default function ToolRentalPage() {
 
   const handleConfirmed = async (rentalData) => {
     if (rentalData && currentUser) {
-      // If payment was processed via Razorpay, rental is already created on backend
+      
       if (rentalData._fromRazorpay) {
         toast.success(`Rental confirmed: ${rentalData.toolName}`);
         setSelectedTool(null);
@@ -750,7 +747,7 @@ export default function ToolRentalPage() {
         return;
       }
 
-      // Fallback for any non-Razorpay flow
+      
       try {
         await createRental({
           toolId: rentalData.toolId,
@@ -784,7 +781,7 @@ export default function ToolRentalPage() {
                 <p className="text-slate-500 font-medium text-lg max-w-xl">{t('tr_depot_desc')}</p>
               </div>
               
-              {/* Industry Level Search Bar */}
+              {}
               <div className="relative w-full md:w-[450px] group">
                 <div className="flex items-center bg-white border-2 border-slate-200 rounded-2xl overflow-hidden focus-within:border-yellow-600 transition-all shadow-sm group-hover:shadow-md">
                   <span className="material-symbols-outlined pl-4 text-slate-400 group-focus-within:text-yellow-600">search</span>
@@ -807,7 +804,7 @@ export default function ToolRentalPage() {
               </div>
             </div>
 
-            {/* Active Filter Chips */}
+            {}
             {hasActiveFilters && (
               <div className="flex flex-wrap items-center gap-2 mt-6">
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mr-2">{t('sd_active_filters')}:</span>
@@ -871,7 +868,7 @@ export default function ToolRentalPage() {
           ) : (
             <div className="flex flex-col lg:flex-row gap-10">
             
-            {/* Sidebar Categories & Filters */}
+            {}
             <aside className="w-full lg:w-72 flex-shrink-0">
                <div className="bg-white p-6 rounded-3xl border border-slate-200/60 shadow-card lg:sticky lg:top-28 space-y-8">
                  <div>
@@ -892,14 +889,14 @@ export default function ToolRentalPage() {
                    </div>
                  </div>
 
-                 {/* Price Filter */}
+                 {}
                  <div>
                    <h3 className="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2"><span className="material-symbols-outlined text-yellow-600 text-lg">payments</span>{t('tr_max_budget')}</h3>
                    <input type="range" min="100" max="10000" step="100" value={maxPrice} onChange={(e) => setMaxPrice(parseInt(e.target.value))} className="w-full h-1.5 bg-slate-200 rounded-full appearance-none cursor-pointer accent-yellow-600" />
                    <div className="flex justify-between mt-2 text-xs font-bold text-slate-500"><span>₹100</span><span className="text-yellow-700 bg-yellow-50 px-2.5 py-1 rounded-lg border border-yellow-100">Up to ₹{maxPrice}</span></div>
                  </div>
 
-                 {/* Condition Filter */}
+                 {}
                  <div>
                    <h3 className="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2"><span className="material-symbols-outlined text-yellow-600 text-lg">verified</span>{t('tr_condition')}</h3>
                    <div className="flex flex-wrap gap-2">
@@ -911,7 +908,7 @@ export default function ToolRentalPage() {
                    </div>
                  </div>
 
-                 {/* Sort & Availability */}
+                 {}
                  <div className="pt-2 space-y-4">
                     <div className="flex items-center justify-between">
                       <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2"><span className="material-symbols-outlined text-yellow-600 text-lg">event_available</span>{t('tr_in_stock')}</h3>
@@ -930,7 +927,7 @@ export default function ToolRentalPage() {
                     </div>
                  </div>
 
-                 {/* Delivery Banner */}
+                 {}
                  <div className="mt-8 bg-gradient-to-br from-brand to-brand-light p-6 rounded-3xl text-white relative overflow-hidden shadow-lg hidden lg:block">
                     <span className="material-symbols-outlined text-yellow-400 text-3xl mb-2 relative z-10">bolt</span>
                     <h4 className="font-bold mb-1 relative z-10 text-lg">Turbo Delivery</h4>
@@ -940,7 +937,7 @@ export default function ToolRentalPage() {
                </div>
             </aside>
 
-            {/* Grid */}
+            {}
             <section className="flex-grow">
               {loadError ? (
                 <div className="bg-white rounded-[2rem] border border-rose-200 p-10 text-center">
@@ -1059,7 +1056,7 @@ export default function ToolRentalPage() {
             </div>
           )}
 
-          {/* New Premium Footer Section with Toast Actions */}
+          {}
           
 
         </main>

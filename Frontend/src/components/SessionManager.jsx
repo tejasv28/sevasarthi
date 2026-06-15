@@ -7,9 +7,9 @@ const SessionManager = () => {
   const [showWarning, setShowWarning] = useState(false);
   const navigate = useNavigate();
   
-  // Set timeout values
-  const INACTIVITY_LIMIT = 30 * 60 * 1000; // 30 minutes
-  const WARNING_TIME = 60 * 1000; // Show warning 1 minute before logout
+  
+  const INACTIVITY_LIMIT = 30 * 60 * 1000; 
+  const WARNING_TIME = 60 * 1000; 
   
   const timeoutRef = useRef(null);
   const warningRef = useRef(null);
@@ -42,11 +42,11 @@ const SessionManager = () => {
   };
 
   useEffect(() => {
-    // Events that reset the inactivity timer
+    
     const events = ['mousemove', 'keydown', 'scroll', 'click'];
     
     const handleActivity = () => {
-      // Only reset if we aren't currently showing the warning
+      
       if (!showWarning) {
         resetTimers();
       }
@@ -64,8 +64,8 @@ const SessionManager = () => {
     };
   }, [currentUser, showWarning]);
 
-  // Here we would ideally render the warning modal, but let's assume it was rendered somewhere else
-  // or we can render it right here!
+  
+  
   if (!showWarning) return null;
 
   return (

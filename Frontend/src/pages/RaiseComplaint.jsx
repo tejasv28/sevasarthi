@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
@@ -36,7 +36,7 @@ export default function RaiseComplaint() {
   const { references, fetchReferences, createComplaint, submitting } = useComplaintStore();
   const fileInputRef = useRef(null);
 
-  // Form state
+  
   const [type, setType] = useState('');
   const [selectedRef, setSelectedRef] = useState(null);
   const [category, setCategory] = useState('');
@@ -107,7 +107,7 @@ export default function RaiseComplaint() {
     }
   };
 
-  // Success screen
+  
   if (submitted && createdTicket) {
     return (
       <div className="min-h-[calc(100vh-5rem)] bg-surface-muted flex items-center justify-center px-4">
@@ -143,7 +143,7 @@ export default function RaiseComplaint() {
 
   return (
     <div className="min-h-[calc(100vh-5rem)] bg-surface-muted pb-24">
-      {/* Header */}
+      {}
       <header className="bg-brand pt-10 pb-14 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3" />
         <div className="section-container relative z-10">
@@ -155,11 +155,11 @@ export default function RaiseComplaint() {
         </div>
       </header>
 
-      {/* Form */}
+      {}
       <div className="section-container -mt-8 relative z-10">
         <form onSubmit={handleSubmit} className="bg-surface rounded-[2rem] shadow-card border border-slate-200/60 p-8 md:p-10 max-w-3xl mx-auto">
 
-          {/* Step 1: Type Selection */}
+          {}
           <div className="mb-8">
             <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">
               1. Complaint Type <span className="text-red-400">*</span>
@@ -191,7 +191,7 @@ export default function RaiseComplaint() {
             {errors.type && <p className="text-red-500 text-xs font-bold mt-2">{errors.type}</p>}
           </div>
 
-          {/* Step 2: Reference Selection */}
+          {}
           <AnimatePresence>
             {type && (
               <motion.div
@@ -252,7 +252,7 @@ export default function RaiseComplaint() {
             )}
           </AnimatePresence>
 
-          {/* Step 3: Category */}
+          {}
           <AnimatePresence>
             {type && selectedRef && (
               <motion.div
@@ -277,7 +277,7 @@ export default function RaiseComplaint() {
             )}
           </AnimatePresence>
 
-          {/* Step 4: Description */}
+          {}
           <AnimatePresence>
             {category && (
               <motion.div
@@ -304,7 +304,7 @@ export default function RaiseComplaint() {
             )}
           </AnimatePresence>
 
-          {/* Step 5: Proof Image */}
+          {}
           <AnimatePresence>
             {category && (
               <motion.div
@@ -358,7 +358,7 @@ export default function RaiseComplaint() {
             )}
           </AnimatePresence>
 
-          {/* Submit */}
+          {}
           {category && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               <button

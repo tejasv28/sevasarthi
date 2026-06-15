@@ -51,7 +51,7 @@ export const useNotificationStore = create((set, get) => ({
     }
   },
 
-  // Start listening for real-time notifications via the shared socket
+  
   startListening: () => {
     if (get()._listening) return;
 
@@ -81,15 +81,15 @@ export const useNotificationStore = create((set, get) => ({
     try {
       if (!('serviceWorker' in navigator) || !('PushManager' in window)) return;
       
-      // Check if notification permission is available
+      
       if (Notification.permission === 'denied') return;
       
-      // Wait for the service worker to be ready
+      
       const registration = await navigator.serviceWorker.ready;
       let subscription = await registration.pushManager.getSubscription();
       
       if (!subscription) {
-        // Ask permission first
+        
         const permission = await Notification.requestPermission();
         if (permission !== 'granted') return;
         
@@ -104,7 +104,7 @@ export const useNotificationStore = create((set, get) => ({
 
       await api.post('/push/subscribe', subscription);
     } catch (err) {
-      // Silently fail in dev mode — push only works with HTTPS in production
+      
       if (err.name !== 'NotAllowedError') {
         console.warn('Web Push not available:', err.message);
       }
@@ -112,7 +112,7 @@ export const useNotificationStore = create((set, get) => ({
   }
 }));
 
-// Utility to convert Base64 string to Uint8Array
+
 function urlBase64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
   const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');

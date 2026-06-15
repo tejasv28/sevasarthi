@@ -1,5 +1,5 @@
 const hi = {
-  // ─── Navigation / Layout ──────────────────────────────────
+  
   nav_services: "सेवाएं",
   nav_rentals: "किराया",
   nav_dashboard: "डैशबोर्ड",
@@ -14,11 +14,11 @@ const hi = {
   nav_set_city: "शहर सेट करें",
   nav_mark_all_read: "सब पढ़ा हुआ",
 
-  // ─── Notifications ────────────────────────────────────────
+  
   notifications: "सूचनाएं",
   no_notifications: "कोई नई सूचना नहीं!",
 
-  // ─── Footer ───────────────────────────────────────────────
+  
   footer_desc: "गुणवत्ता, गति और विश्वास को समर्पित प्रीमियम होम सर्विस और उपकरण किराये का प्लेटफ़ॉर्म।",
   footer_company: "कंपनी",
   footer_about: "हमारे बारे में",
@@ -36,7 +36,7 @@ const hi = {
   footer_copyright: "© 2026 सेवा सारथी। सर्वाधिकार सुरक्षित।",
   footer_made_in: "भारत में बना",
 
-  // ─── Landing Page ─────────────────────────────────────────
+  
   hero_badge: "10,000+ घरों द्वारा विश्वसनीय",
   hero_title: "प्रीमियम होम सर्विस और उपकरण किराये",
   hero_subtitle: "विश्वसनीय विशेषज्ञ और गुणवत्ता वाले उपकरण, आपके दरवाजे पर।",
@@ -85,14 +85,14 @@ const hi = {
   cta_explore: "सेवाएं देखें",
   cta_join_pro: "पेशेवर के रूप में जुड़ें",
 
-  // Service categories
+  
   carpenter: "बढ़ई",
   ac_repair: "एसी रिपेयर",
   painting: "पेंटिंग",
   pest_control: "कीट नियंत्रण",
   gardening: "बागवानी",
 
-  // ─── Service Discovery ────────────────────────────────────
+  
   sd_filters: "फ़िल्टर और खोज",
   sd_search_placeholder: "सेवाएं खोजें...",
   sd_filters_label: "फ़िल्टर",
@@ -123,7 +123,7 @@ const hi = {
   sd_rating: "रेटिंग",
   sd_sort_by: "इसके अनुसार क्रमबद्ध करें",
 
-  // ─── Tool Rental ──────────────────────────────────────────
+  
   tr_search_placeholder: "उपकरण खोजें...",
   tr_equipment_types: "उपकरण के प्रकार",
   tr_max_budget: "अधिकतम बजट",
@@ -133,7 +133,7 @@ const hi = {
   tr_price_low_high: "कीमत: कम से उच्च",
   tr_price_high_low: "कीमत: उच्च से कम",
 
-  // ─── Authentication ───────────────────────────────────────
+  
   auth_create_account: "खाता बनाएं",
   auth_welcome_back: "वापसी पर स्वागत है",
   auth_join_network: "प्रीमियम होम सर्विस नेटवर्क से जुड़ें।",
@@ -164,7 +164,7 @@ const hi = {
   auth_confirm_password: "पासवर्ड पुष्टि करें",
   auth_back_to_login: "← लॉगिन पर वापस जाएं",
 
-  // ─── Booking Flow ─────────────────────────────────────────
+  
   book_step_schedule: "शेड्यूल",
   book_step_details: "विवरण",
   book_step_payment: "भुगतान",
@@ -197,7 +197,7 @@ const hi = {
   book_provider: "सेवा प्रदाता",
   book_service: "नई सेवा बुक करें",
 
-  // ─── User Dashboard ───────────────────────────────────────
+  
   ud_welcome: "वापसी पर स्वागत है",
   ud_active_bookings: "सक्रिय बुकिंग",
   ud_completed: "पूर्ण",
@@ -218,7 +218,7 @@ const hi = {
   ud_no_rentals_hint: "हमारे क्यूरेटेड कैटलॉग से पेशेवर उपकरण किराये पर लें।",
   ud_browse_catalog: "कैटलॉग देखें",
 
-  // ─── Provider Dashboard ───────────────────────────────────
+  
   pd_accepting_jobs: "काम स्वीकार कर रहे",
   pd_not_accepting: "स्वीकार नहीं कर रहे",
   pd_today_jobs: "आज के काम",
@@ -261,13 +261,13 @@ const hi = {
   pd_action: "कार्रवाई",
   pd_days: "दिन",
 
-  // ─── 404 ──────────────────────────────────────────────────
+  
   not_found_title: "पेज नहीं मिला",
   not_found_hint: "कोई रूट मेल नहीं खाता",
   not_found_home: "होम पर जाएं",
   not_found_browse: "सेवाएं देखें",
 
-  // ─── Common ───────────────────────────────────────────────
+  
   loading: "लोड हो रहा है...",
   error: "त्रुटि",
   success: "सफल",
@@ -280,7 +280,7 @@ const hi = {
   yes: "हाँ",
   no: "नहीं",
 
-  // ─── Dynamic Categories & Roles ─────────────────────────
+  
   cat_electrician: 'इलेक्ट्रीशियन',
   cat_plumber: 'प्लंबर',
   cat_cleaning: 'सफाई',
@@ -305,7 +305,7 @@ const hi = {
   alert_new_job_request: 'आपको एक नया काम मिला है!',
   alert_new_rental: 'आपको एक नया टूल रेंटल मिला है!',
 
-  // ─── BookingFlow ─────────────────────────────────────────
+  
   book_step_schedule: 'समय निर्धारण',
   book_step_details: 'सेवा विवरण',
   book_step_payment: 'भुगतान',
@@ -347,7 +347,7 @@ const hi = {
   book_try_tomorrow: 'कृपया कल या कोई अन्य तारीख चुनें।',
   book_provider: 'सेवादाता',
 
-  // ─── UserDashboard ────────────────────────────────────────
+  
   ud_manage_services: 'अपनी सेवाओं को प्रबंधित करें और प्रगति ट्रैक करें।',
   ud_raise_complaint: 'शिकायत दर्ज करें',
   ud_my_complaints: 'मेरी शिकायतें',
@@ -381,7 +381,7 @@ const hi = {
   ud_comment_placeholder: 'बताएं क्या अच्छा लगा या क्या सुधार हो सकता है...',
   ud_submit_feedback: 'फीडबैक जमा करें',
 
-  // ─── ProviderDashboard ────────────────────────────────────
+  
   pd_total_jobs_completed: 'कुल पूर्ण कार्य',
   pd_all_time: 'अब तक',
   pd_this_week: 'इस सप्ताह',
@@ -432,7 +432,7 @@ const hi = {
   pd_no_image: 'कोई छवि नहीं',
   pd_per_day: '/ दिन',
 
-  // ─── UserDashboard Status & Tracking ────────────────────
+  
   ud_status_pending:   'स्वीकृति की प्रतीक्षा में',
   ud_status_accepted:  'सेवादाता को सौंपा गया',
   ud_status_enroute:   'सेवादाता रास्ते में है',
@@ -446,7 +446,7 @@ const hi = {
   pd_approval_pending:  'लंबित',
   pd_approval_rejected: 'अस्वीकृत',
 
-  // ─── Missing Landing Page ─────────────────────────────────
+  
   lp_hero_title: 'घर बैठे सेवाएं',
   lp_all_services: 'सभी सेवाएं',
   lp_offers_title: 'ऑफ़र और छूट',
@@ -473,7 +473,7 @@ const hi = {
   lp_feature3_title: 'समर्पित सहायता',
   lp_feature3_desc: 'हम आपके लिए 24/7 उपलब्ध हैं।',
 
-  // ─── Missing Service Discovery ────────────────────────────
+  
   sd_back_to_all: 'सभी श्रेणियों पर वापस जाएं',
   sd_ai_search: 'एआई खोज',
   sd_try_search: 'प्रयास करें: "मेरा पंखा आवाज कर रहा है", "टपकता नल ठीक करना है", "मेरा सोफा धोएं"',
@@ -490,7 +490,7 @@ const hi = {
   sd_view_profile: 'प्रोफ़ाइल देखें',
   sd_professionals_found: 'पेशेवर मिले',
 
-  // ─── Missing Tool Rental ──────────────────────────────────
+  
   tr_depot_title: 'उपकरण डिपो',
   tr_depot_desc: 'वाणिज्यिक-ग्रेड उपकरण तुरंत आपके दरवाजे पर पहुंचाए जाते हैं। दिन, सप्ताह या महीने के हिसाब से किराए पर लें।',
   tr_configure: 'किराया कॉन्फ़िगर करें',
@@ -541,7 +541,7 @@ const hi = {
   tr_delivery: 'डिलीवरी',
   tr_address: 'पता',
 
-  // ─── Navbar & Dropdowns ──────────────────────────────────
+  
   nav_set_location: 'स्थान सेट करें',
   explore_all_services: 'सभी सेवाएं देखें',
   nav_search_for: 'खोजें',

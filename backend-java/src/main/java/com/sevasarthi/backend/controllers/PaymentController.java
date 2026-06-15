@@ -74,15 +74,15 @@ public class PaymentController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, null, "Invalid payment type."));
         }
 
-        // Placeholder for Razorpay API call
-        // In reality, you'd use the Razorpay Java SDK: RazorpayClient razorpay = new RazorpayClient(keyId, keySecret);
-        // Order order = razorpay.orders.create(orderRequest);
+        
+        
+        
         
         String dummyOrderId = "order_" + System.currentTimeMillis();
 
         Map<String, Object> data = new HashMap<>();
         data.put("orderId", dummyOrderId);
-        data.put("amount", Math.round(amountNum.doubleValue() * 100)); // paise
+        data.put("amount", Math.round(amountNum.doubleValue() * 100)); 
         data.put("currency", "INR");
         data.put("keyId", razorpayKeyId);
 
@@ -101,10 +101,10 @@ public class PaymentController {
         Map<String, Object> payload = (Map<String, Object>) body.get("payload");
 
         try {
-            // Verify signature
-            // In a real scenario with Razorpay enabled:
-            // String generatedSignature = calculateRFC2104HMAC(razorpayOrderId + "|" + razorpayPaymentId, razorpayKeySecret);
-            // if (!generatedSignature.equals(razorpaySignature)) throw ...
+            
+            
+            
+            
             
             if ("booking".equals(type)) {
                 Booking booking = createBookingAfterPayment(currentUser, payload, razorpayOrderId, razorpayPaymentId);
@@ -213,8 +213,8 @@ public class PaymentController {
                 .total(total)
                 .deliveryDetails(deliveryDetails)
                 .status("confirmed")
-                .deliveryOtp("123456") // Mock OTP
-                .returnOtp("654321")   // Mock OTP
+                .deliveryOtp("123456") 
+                .returnOtp("654321")   
                 .paymentStatus(Constants.PaymentStatus.PAID)
                 .razorpayOrderId(orderId)
                 .razorpayPaymentId(paymentId)

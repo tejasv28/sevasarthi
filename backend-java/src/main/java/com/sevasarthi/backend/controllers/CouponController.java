@@ -50,7 +50,7 @@ public class CouponController {
         return user != null && user.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
     }
 
-    // --- ADMIN ENDPOINTS ---
+    
 
     @PostMapping
     public ResponseEntity<?> createCoupon(@RequestBody Coupon request) {
@@ -127,7 +127,7 @@ public class CouponController {
         return ResponseEntity.ok(new ApiResponse<>(200, null, "Coupon deleted successfully"));
     }
 
-    // --- PUBLIC / USER ENDPOINTS ---
+    
 
     @GetMapping("/home")
     public ResponseEntity<?> getHomeOffers() {

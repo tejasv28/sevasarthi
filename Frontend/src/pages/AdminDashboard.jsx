@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import toast from 'react-hot-toast';
@@ -19,7 +19,7 @@ export default function AdminDashboard() {
 
   const [verificationFilter, setVerificationFilter] = useState('pending');
   const [rejectionReason, setRejectionReason] = useState('');
-  const [rejectingId, setRejectingId] = useState(null); // 'verif_id' or 'service_id'
+  const [rejectingId, setRejectingId] = useState(null); 
 
   useEffect(() => { fetchAll(); }, []);
   useEffect(() => { fetchVerifications(verificationFilter); }, [verificationFilter]);
@@ -118,7 +118,7 @@ export default function AdminDashboard() {
       <div className="absolute top-0 left-0 w-full h-[350px] bg-brand" style={{ zIndex: 0 }} />
 
       <div className="max-w-[1400px] mx-auto px-4 md:px-8 pt-10 relative" style={{ zIndex: 1 }}>
-        {/* Header */}
+        {}
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
           <div>
             <h2 className="text-3xl font-extrabold font-headline text-white tracking-tight">Admin Dashboard</h2>
@@ -134,7 +134,7 @@ export default function AdminDashboard() {
           </div>
         </header>
 
-        {/* KPI Cards */}
+        {}
         <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
           {[
             { label: 'Total Users', value: stats.totalUsers || 0, badge: `${stats.totalProviders || 0} providers`, badgeType: 'positive', icon: 'group' },
@@ -164,10 +164,10 @@ export default function AdminDashboard() {
           ))}
         </section>
 
-        {/* Overview Section */}
+        {}
         {activeSection === 'overview' && (
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-8">
-            {/* Chart */}
+            {}
             <div className="xl:col-span-2 bg-surface rounded-3xl p-8 shadow-card border border-slate-200/60">
               <h4 className="text-xl font-extrabold font-headline text-brand mb-8">Weekly Booking Trends</h4>
               <div className="relative h-64 w-full flex items-end justify-between gap-2 md:gap-4 mt-6">
@@ -191,7 +191,7 @@ export default function AdminDashboard() {
               </div>
             </div>
 
-            {/* Quick Actions / Summary */}
+            {}
             <div className="bg-surface rounded-3xl p-8 shadow-card border border-slate-200/60 flex flex-col">
               <h4 className="text-xl font-extrabold font-headline text-brand mb-6">Action Items</h4>
               <div className="space-y-4">
@@ -226,7 +226,7 @@ export default function AdminDashboard() {
           </div>
         )}
 
-        {/* Verifications Section */}
+        {}
         {activeSection === 'verifications' && (
           <section className="bg-surface rounded-3xl p-8 shadow-card border border-slate-200/60 mb-8">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
@@ -249,7 +249,7 @@ export default function AdminDashboard() {
                 <div key={ver._id} className="bg-surface border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-card-hover transition-shadow">
                   <div className="flex flex-col md:flex-row gap-6 justify-between items-start">
                     
-                    {/* Basic Info */}
+                    {}
                     <div className="flex gap-4">
                       <div className="w-16 h-16 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 flex-shrink-0">
                         {ver.documents?.profilePhoto ? (
@@ -281,7 +281,7 @@ export default function AdminDashboard() {
                       </div>
                     </div>
 
-                    {/* Documents & Actions */}
+                    {}
                     <div className="flex flex-col md:items-end w-full md:w-auto gap-4">
                       {ver.documents?.idProof && (
                         <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-2 rounded-xl">
@@ -320,7 +320,7 @@ export default function AdminDashboard() {
           </section>
         )}
 
-        {/* Services Section */}
+        {}
         {activeSection === 'services' && (
           <section className="bg-surface rounded-3xl p-8 shadow-card border border-slate-200/60 mb-8">
             <h4 className="text-xl font-extrabold font-headline text-brand mb-8">Pending Service Approvals</h4>
@@ -370,7 +370,7 @@ export default function AdminDashboard() {
           </section>
         )}
 
-        {/* Users Section */}
+        {}
         {activeSection === 'users' && (
           <section className="bg-surface rounded-3xl p-8 shadow-card border border-slate-200/60 mb-8">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
@@ -453,7 +453,7 @@ export default function AdminDashboard() {
           </section>
         )}
 
-        {/* Complaints Section */}
+        {}
         {activeSection === 'complaints' && (
           <section className="bg-surface rounded-3xl p-8 shadow-card border border-slate-200/60 mb-8">
             <h4 className="text-xl font-extrabold font-headline text-brand mb-8">Complaint Management</h4>
@@ -461,7 +461,7 @@ export default function AdminDashboard() {
           </section>
         )}
 
-        {/* Offers Section */}
+        {}
         {activeSection === 'offers' && (
           <section className="bg-surface rounded-3xl p-8 shadow-card border border-slate-200/60 mb-8">
             <AdminCoupons />

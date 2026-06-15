@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars, react-hooks/set-state-in-effect */
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../store/useAuthStore';
@@ -15,10 +15,10 @@ export default function Authentication() {
   const [passwordChecks, setPasswordChecks] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
-  // Signup method: 'email' or 'phone'
+  
   const [signupMethod, setSignupMethod] = useState('email');
   const [confirmationResult, setConfirmationResult] = useState(null);
-  // OTP verification for signup
+  
   const [signupOtp, setSignupOtp] = useState('');
   const [signupOtpSent, setSignupOtpSent] = useState(false);
   const [signupOtpVerified, setSignupOtpVerified] = useState(false);
@@ -27,24 +27,24 @@ export default function Authentication() {
   const [signupDevOtp, setSignupDevOtp] = useState('');
   const [emailSuggestion, setEmailSuggestion] = useState('');
 
-  // Wizard state for sign up
+  
   const [signUpStep, setSignUpStep] = useState(1);
 
-  // Login/User signup fields
+  
   const [loginIdentifier, setLoginIdentifier] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   
-  // Address fields
+  
   const [line1, setLine1] = useState('');
   const [line2, setLine2] = useState('');
   const [city, setCity] = useState('');
   const [pincode, setPincode] = useState('');
   const [landmark, setLandmark] = useState('');
 
-  // Forgot password
+  
   const [forgotMode, setForgotMode] = useState(null);
   const [forgotEmail, setForgotEmail] = useState('');
   const [otp, setOtp] = useState('');
@@ -74,7 +74,7 @@ export default function Authentication() {
     }
   }, [password]);
 
-  // Real-time email validation with suggestion
+  
   useEffect(() => {
     if (email && isSignUp) {
       const result = validateEmail(email);
@@ -85,7 +85,7 @@ export default function Authentication() {
 
   const getStrengthColor = () => passwordStrength < 40 ? 'bg-red-400' : passwordStrength < 70 ? 'bg-amber-400' : 'bg-emerald-500';
 
-  // --- FORGOT PASSWORD HANDLERS ---
+  
   const handleForgotSendOtp = async (e) => {
     e.preventDefault();
     if (!forgotEmail) { setErrors({ global: 'Email is required' }); return; }
@@ -131,7 +131,7 @@ export default function Authentication() {
     else setErrors({ global: useAuthStore.getState().error || 'Reset failed. Please try again.' });
   };
 
-  // --- SIGNUP OTP HANDLERS ---
+  
   const handleSendSignupOtp = async () => {
     let payloadEmailOrPhone = '';
     if (signupMethod === 'email') {
@@ -180,7 +180,7 @@ export default function Authentication() {
     }
   };
 
-  // --- WIZARD VALIDATION ---
+  
   const validateStep1 = () => {
     const errs = {};
     const nv = validateName(name);
@@ -241,7 +241,7 @@ export default function Authentication() {
       } else setErrors({ global: useAuthStore.getState().error || 'Registration failed.' });
       return;
     }
-    // Login flow
+    
     const id = loginIdentifier.trim();
     if (!id) { setErrors({ loginId: 'Email or mobile number is required' }); return; }
     if (!password) { setErrors({ password: 'Password is required' }); return; }
@@ -265,7 +265,7 @@ export default function Authentication() {
   const labelCls = "block text-[11px] font-bold text-slate-400 mb-2 uppercase tracking-widest";
   const inputCls = "input-field";
 
-  // --- FORGOT PASSWORD UI ---
+  
   if (forgotMode) {
     return (
       <div className="min-h-[calc(100vh-5rem)] flex items-center justify-center bg-brand py-12 px-4 relative overflow-hidden">
@@ -332,7 +332,7 @@ export default function Authentication() {
     );
   }
 
-  // --- MAIN AUTH UI ---
+  
   return (
     <div className="min-h-[calc(100vh-5rem)] flex items-center justify-center bg-brand py-12 px-4 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3" />
@@ -400,7 +400,7 @@ export default function Authentication() {
 
             {isSignUp && signUpStep === 1 && (
               <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-5">
-                {/* Sign Up Method Toggle */}
+                {}
                 <div className="flex bg-slate-100 rounded-xl p-1 gap-1">
                   <button type="button" onClick={() => { setSignupMethod('email'); setSignupOtpSent(false); setSignupOtpVerified(false); setSignupOtp(''); setErrors({}); }} className={`flex-1 py-2.5 rounded-lg text-sm font-bold transition-all flex items-center justify-center gap-1.5 ${signupMethod === 'email' ? 'bg-white text-brand shadow-sm' : 'text-slate-500'}`}>
                     <span className="material-symbols-outlined text-lg">email</span> Email
@@ -528,7 +528,7 @@ export default function Authentication() {
               </motion.div>
             )}
 
-            {/* Google auth */}
+            {}
             <div className="relative mt-8">
               <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-slate-200" /></div>
               <div className="relative flex justify-center text-sm"><span className="px-2 bg-surface text-slate-500 font-medium">{t('auth_or_continue')}</span></div>
@@ -538,7 +538,7 @@ export default function Authentication() {
             </div>
           </form>
 
-          {/* Toggle signup/login */}
+          {}
           <div className="mt-8 text-center pt-6 border-t border-slate-100">
             <p className="text-sm font-medium text-slate-500">
               {isSignUp ? t('auth_already_account') + ' ' : t('auth_no_account') + ' '}

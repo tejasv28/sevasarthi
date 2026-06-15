@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars, react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuthStore } from '../store/useAuthStore';
@@ -22,12 +22,12 @@ export default function ProviderAuthentication() {
   const [errors, setErrors] = useState({});
   const [passwordStrength, setPasswordStrength] = useState(0);
 
-  // --- LOGIN FIELDS ---
+  
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
-  // --- FORGOT PASSWORD STATE ---
-  const [forgotMode, setForgotMode] = useState(null); // null | 'email' | 'otp' | 'reset'
+  
+  const [forgotMode, setForgotMode] = useState(null); 
   const [forgotEmail, setForgotEmail] = useState('');
   const [forgotOtp, setForgotOtp] = useState('');
   const [forgotDevOtp, setForgotDevOtp] = useState('');
@@ -35,34 +35,34 @@ export default function ProviderAuthentication() {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  // --- SIGN UP WIZARD STATE ---
+  
   const [step, setStep] = useState(1);
   const [registrationComplete, setRegistrationComplete] = useState(false);
   const [devOtp, setDevOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const [otpVerified, setOtpVerified] = useState(false);
 
-  // Step 1: Basic
+  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [otp, setOtp] = useState('');
 
-  // Step 2: Business
-  const [businessType, setBusinessType] = useState('individual'); // individual | shop | agency
+  
+  const [businessType, setBusinessType] = useState('individual'); 
   const [businessName, setBusinessName] = useState('');
   const [experience, setExperience] = useState('1 yr');
   const [city, setCity] = useState('');
   const [fullAddress, setFullAddress] = useState('');
   const [pincode, setPincode] = useState('');
 
-  // Step 3: Documents (Base64)
+  
   const [idProofType, setIdProofType] = useState('aadhar');
   const [idProof, setIdProof] = useState('');
   const [profilePhoto, setProfilePhoto] = useState('');
 
-  // Step 4: Primary Service
+  
   const [primaryCategory, setPrimaryCategory] = useState('');
 
   const { login, register, sendProviderOtp, verifyProviderOtp, forgotPassword, verifyOtp, resetPassword } = useAuthStore();
@@ -77,7 +77,7 @@ export default function ProviderAuthentication() {
 
   const getStrengthColor = () => passwordStrength < 40 ? 'bg-red-400' : passwordStrength < 70 ? 'bg-amber-400' : 'bg-emerald-500';
 
-  // --- LOGIN HANDLER ---
+  
   const handleLogin = async (e) => {
     e.preventDefault();
     setErrors({}); setIsLoading(true);
@@ -98,7 +98,7 @@ export default function ProviderAuthentication() {
     }
   };
 
-  // --- FORGOT PASSWORD HANDLERS ---
+  
   const handleForgotSendOtp = async (e) => {
     e.preventDefault();
     if (!forgotEmail) { setErrors({ global: 'Email is required' }); return; }
@@ -151,7 +151,7 @@ export default function ProviderAuthentication() {
     }
   };
 
-  // --- WIZARD HANDLERS ---
+  
   const handleSendOtp = async () => {
     if (!email) { toast.error("Email required"); return; }
     const ev = validateEmail(email);
@@ -161,7 +161,7 @@ export default function ProviderAuthentication() {
     setIsLoading(false);
     if (res?.success) {
       setOtpSent(true);
-      setDevOtp(res.data.devOtp); // Dev mode
+      setDevOtp(res.data.devOtp); 
       toast.success("OTP Sent! (Check dev console or use autofilled OTP)");
     } else {
       toast.error(useAuthStore.getState().error || "Failed to send OTP");
@@ -267,7 +267,7 @@ export default function ProviderAuthentication() {
 
   return (
     <div className="min-h-screen bg-surface-muted flex flex-col lg:flex-row relative overflow-hidden">
-      {/* Left side brand banner */}
+      {}
       <div className="hidden lg:flex lg:w-5/12 bg-brand p-12 flex-col justify-between relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
         <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[100px]" />
@@ -300,14 +300,14 @@ export default function ProviderAuthentication() {
         </div>
       </div>
 
-      {/* Right side forms */}
+      {}
       <div className="flex-1 flex items-center justify-center p-4 sm:p-8 lg:p-12 relative z-10 min-h-screen overflow-y-auto">
         <div className="w-full max-w-xl">
           <AnimatePresence mode="wait">
             {!isSignUp ? (
               <motion.div key="login" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="bg-surface rounded-3xl p-8 sm:p-10 shadow-premium border border-slate-200/60">
 
-                {/* ── Forgot Password Flow ── */}
+                {}
                 {forgotMode ? (
                   <div>
                     <div className="text-center mb-8">
@@ -381,7 +381,7 @@ export default function ProviderAuthentication() {
                   </div>
                 ) : (
                   <>
-                    {/* ── Normal Login Form ── */}
+                    {}
                     <div className="text-center mb-10">
                       <h2 className="text-3xl font-extrabold text-brand font-headline tracking-tight mb-2">Provider Portal</h2>
                       <p className="text-slate-500 font-medium">Log in to manage your bookings and services.</p>
@@ -428,7 +428,7 @@ export default function ProviderAuthentication() {
                   <p className="text-slate-500 font-medium mt-2">Join our network of professionals in 4 easy steps.</p>
                 </div>
 
-                {/* Progress Bar */}
+                {}
                 <div className="flex justify-between items-center mb-10 relative">
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1.5 bg-slate-100 rounded-full" />
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 h-1.5 bg-brand rounded-full transition-all duration-500" style={{ width: `${((step - 1) / 3) * 100}%` }} />
@@ -440,9 +440,9 @@ export default function ProviderAuthentication() {
                   ))}
                 </div>
 
-                {/* --- WIZARD STEPS --- */}
+                {}
                 <div className="min-h-[400px]">
-                  {/* Step 1: Account */}
+                  {}
                   {step === 1 && (
                     <motion.div initial={{opacity:0}} animate={{opacity:1}} className="space-y-5">
                       <h3 className="text-xl font-extrabold text-brand mb-4">Account Details</h3>
@@ -495,7 +495,7 @@ export default function ProviderAuthentication() {
                     </motion.div>
                   )}
 
-                  {/* Step 2: Business Profile */}
+                  {}
                   {step === 2 && (
                     <motion.div initial={{opacity:0}} animate={{opacity:1}} className="space-y-5">
                       <h3 className="text-xl font-extrabold text-brand mb-4">Business Details</h3>
@@ -547,14 +547,14 @@ export default function ProviderAuthentication() {
                     </motion.div>
                   )}
 
-                  {/* Step 3: Documents */}
+                  {}
                   {step === 3 && (
                     <motion.div initial={{opacity:0}} animate={{opacity:1}} className="space-y-5">
                       <h3 className="text-xl font-extrabold text-brand mb-4">Verification Documents</h3>
                       <p className="text-sm text-slate-500 font-medium mb-4 -mt-2">Upload clear images for faster approval.</p>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                        {/* Profile/Shop Photo */}
+                        {}
                         <div className="border-2 border-dashed border-slate-200 rounded-2xl p-4 flex flex-col items-center text-center relative overflow-hidden group hover:bg-slate-50 transition-colors">
                           {profilePhoto ? (
                             <img src={profilePhoto} className="absolute inset-0 w-full h-full object-cover" alt="Profile" />
@@ -568,7 +568,7 @@ export default function ProviderAuthentication() {
                           <input type="file" accept="image/*" onChange={(e)=>handleFileUpload(e, setProfilePhoto)} className="absolute inset-0 opacity-0 cursor-pointer" />
                         </div>
 
-                        {/* ID Proof */}
+                        {}
                         <div className="border-2 border-dashed border-slate-200 rounded-2xl p-4 flex flex-col items-center text-center relative overflow-hidden group hover:bg-slate-50 transition-colors">
                           <select value={idProofType} onChange={e=>setIdProofType(e.target.value)} className="absolute top-2 left-2 z-20 text-xs font-bold bg-white/80 backdrop-blur-sm border border-slate-200 rounded-lg px-2 py-1 outline-none text-brand">
                             <option value="aadhar">Aadhar Card</option>
@@ -594,7 +594,7 @@ export default function ProviderAuthentication() {
                     </motion.div>
                   )}
 
-                  {/* Step 4: Primary Service */}
+                  {}
                   {step === 4 && (
                     <motion.div initial={{opacity:0}} animate={{opacity:1}} className="space-y-5">
                       <h3 className="text-xl font-extrabold text-brand mb-4">Select Primary Category</h3>
@@ -617,7 +617,7 @@ export default function ProviderAuthentication() {
                   )}
                 </div>
 
-                {/* Wizard Controls */}
+                {}
                 <div className="flex justify-between items-center mt-10 pt-6 border-t border-slate-100">
                   {step > 1 ? (
                     <button onClick={prevStep} className="btn-secondary !px-6 text-sm">Back</button>

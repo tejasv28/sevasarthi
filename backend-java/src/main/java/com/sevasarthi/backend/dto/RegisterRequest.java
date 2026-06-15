@@ -14,11 +14,11 @@ public class RegisterRequest {
     private String signupMethod;
     private String otpToken;
 
-    // Provider fields
+    
     private String category;
     private String title;
     private String bio;
-    private Object skills; // Could be List<String>
+    private Object skills; 
     private String experience;
     private String businessType;
     private String businessName;

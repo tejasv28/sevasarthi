@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import toast from 'react-hot-toast';
@@ -69,7 +69,7 @@ export default function AdminComplaints() {
 
   return (
     <section className="space-y-6">
-      {/* Stats Row */}
+      {}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
           { label:'Pending', val: adminStats.pendingCount||0, color:'amber' },
@@ -84,7 +84,7 @@ export default function AdminComplaints() {
         ))}
       </div>
 
-      {/* Filters */}
+      {}
       <div className="bg-surface rounded-2xl p-5 border border-slate-200/60 shadow-card flex flex-wrap gap-3 items-center">
         <div className="relative flex-1 min-w-[200px]">
           <span className="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[18px]">search</span>
@@ -105,7 +105,7 @@ export default function AdminComplaints() {
         <button onClick={handleSearch} className="btn-primary !py-2.5 !text-sm !rounded-xl">Search</button>
       </div>
 
-      {/* Table */}
+      {}
       <div className="bg-surface rounded-2xl shadow-card border border-slate-200/60 overflow-hidden">
         {loading ? (
           <div className="p-12 text-center"><svg className="animate-spin h-8 w-8 text-brand mx-auto" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg></div>
@@ -137,7 +137,7 @@ export default function AdminComplaints() {
             </table>
           </div>
         )}
-        {/* Pagination */}
+        {}
         {adminPagination.pages>1&&(
           <div className="p-4 border-t border-slate-100 flex justify-between items-center">
             <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Page {adminPagination.page} of {adminPagination.pages}</p>
@@ -150,12 +150,12 @@ export default function AdminComplaints() {
         )}
       </div>
 
-      {/* Detail Modal */}
+      {}
       <AnimatePresence>
         {selectedId && c && (
           <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-50 flex items-start justify-center bg-brand/40 backdrop-blur-sm px-4 pt-10 pb-10 overflow-y-auto">
             <motion.div initial={{scale:0.95,y:20}} animate={{scale:1,y:0}} exit={{scale:0.95,y:20}} className="bg-surface w-full max-w-2xl rounded-[2rem] shadow-premium border border-slate-200/50 relative" onClick={e=>e.stopPropagation()}>
-              {/* Header */}
+              {}
               <div className="p-6 border-b border-slate-100 flex justify-between items-start">
                 <div>
                   <p className="text-[10px] font-bold text-slate-400 tracking-widest mb-1">{c.ticketId}</p>
@@ -166,19 +166,19 @@ export default function AdminComplaints() {
               </div>
 
               <div className="p-6 space-y-5 max-h-[65vh] overflow-y-auto">
-                {/* Status */}
+                {}
                 <div className="flex items-center gap-3">
                   <span className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border ${badgeColor(c.status)}`}>{c.status?.replace('_',' ')}</span>
                   {c.adminAction&&<span className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border bg-slate-100 text-slate-600 border-slate-200">{c.adminAction.replace('_',' ')}</span>}
                 </div>
 
-                {/* Description */}
+                {}
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
                   <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Description</p>
                   <p className="text-sm text-slate-700 leading-relaxed">{c.description}</p>
                 </div>
 
-                {/* Proof */}
+                {}
                 {c.proofImage&&(
                   <div>
                     <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Proof Image</p>
@@ -186,7 +186,7 @@ export default function AdminComplaints() {
                   </div>
                 )}
 
-                {/* Reference Info */}
+                {}
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
                   <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">{c.type==='service_booking'?'Booking':'Rental'} Details</p>
                   {c.type==='service_booking'&&c.bookingId&&(
@@ -197,7 +197,7 @@ export default function AdminComplaints() {
                   )}
                 </div>
 
-                {/* Provider Info */}
+                {}
                 {c.providerId&&(
                   <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
                     <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Provider</p>
@@ -211,7 +211,7 @@ export default function AdminComplaints() {
                   </div>
                 )}
 
-                {/* Timeline */}
+                {}
                 {c.statusHistory?.length>0&&(
                   <div>
                     <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Timeline</p>
@@ -231,7 +231,7 @@ export default function AdminComplaints() {
                   </div>
                 )}
 
-                {/* Update Status */}
+                {}
                 <div className="border-t border-slate-100 pt-5">
                   <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Update Status</p>
                   <div className="flex gap-3 mb-3">
@@ -244,7 +244,7 @@ export default function AdminComplaints() {
                   <textarea value={responseInput} onChange={e=>setResponseInput(e.target.value)} className="input-field !rounded-xl !min-h-[80px] resize-none text-sm" placeholder="Admin response to the customer (optional)..."/>
                 </div>
 
-                {/* Admin Actions */}
+                {}
                 <div className="border-t border-slate-100 pt-5">
                   <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Take Action Against Provider</p>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -263,7 +263,7 @@ export default function AdminComplaints() {
         )}
       </AnimatePresence>
 
-      {/* Action Confirmation Modal */}
+      {}
       <AnimatePresence>
         {actionModal&&(
           <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
@@ -293,7 +293,7 @@ export default function AdminComplaints() {
         )}
       </AnimatePresence>
 
-      {/* Lightbox */}
+      {}
       <AnimatePresence>
         {lightbox&&(
           <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-[70] bg-black/80 flex items-center justify-center p-4" onClick={()=>setLightbox(null)}>

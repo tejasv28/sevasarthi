@@ -82,7 +82,7 @@ public class ToolController {
             if (!userIds.isEmpty()) {
                 query.addCriteria(Criteria.where("ownerId").in(userIds));
             } else {
-                query.addCriteria(Criteria.where("ownerId").isNull()); // Force empty result
+                query.addCriteria(Criteria.where("ownerId").isNull()); 
             }
         }
 

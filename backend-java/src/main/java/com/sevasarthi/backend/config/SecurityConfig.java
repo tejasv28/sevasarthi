@@ -60,7 +60,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> 
                     auth.requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/test/**").permitAll()
-                        .requestMatchers("/").permitAll() // Health check
+                        .requestMatchers("/").permitAll() 
                         .anyRequest().authenticated()
                 );
 

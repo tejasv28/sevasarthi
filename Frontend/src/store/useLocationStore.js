@@ -25,7 +25,7 @@ export const useLocationStore = create(
           async (position) => {
             try {
               const { latitude, longitude } = position.coords;
-              // Use zoom=18 for street-level detail
+              
               const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18`);
               
               if (!res.ok) throw new Error('Failed to fetch location data');
@@ -34,7 +34,7 @@ export const useLocationStore = create(
               
               const detectedCity = data.address.city || data.address.town || data.address.village || data.address.county || '';
               
-              // Construct a premium-looking exact address getting the most specific details
+              
               const addr = data.address || {};
               const poi = addr.amenity || addr.shop || addr.office || addr.building || addr.leisure || addr.historic || addr.tourism || '';
               const house = addr.house_number || '';
@@ -47,7 +47,7 @@ export const useLocationStore = create(
               if (exactParts.length > 0) {
                 exactAddress = exactParts.join(', ');
               } else if (data.display_name) {
-                // Fallback to taking the first 3-4 segments of the raw display name
+                
                 exactAddress = data.display_name.split(',').slice(0, 3).join(', ');
               }
 

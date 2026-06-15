@@ -9,7 +9,7 @@ export default function InstallPWA() {
     const handleBeforeInstallPrompt = (e) => {
       e.preventDefault();
       setDeferredPrompt(e);
-      // Don't show immediately if they just dismissed it recently (could use localStorage here)
+      
       const dismissed = localStorage.getItem('pwa_dismissed');
       if (!dismissed) {
         setShowPrompt(true);

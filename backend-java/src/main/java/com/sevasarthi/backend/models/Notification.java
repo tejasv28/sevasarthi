@@ -19,7 +19,7 @@ public class Notification {
     @Id
     private String id;
     
-    private String userId; // Maps to User ObjectId
+    private String userId; 
     
     private String title;
     private String message;

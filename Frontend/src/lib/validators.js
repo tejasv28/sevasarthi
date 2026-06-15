@@ -1,9 +1,6 @@
-/**
- * Industry-Level Validation Library for Seva Sarthi
- * Designed for tier-2/3 and rural users — strict but helpful validations.
- */
 
-// ─── COMMON TYPO DOMAINS ─────────────────────────────────────────────────────
+
+
 const DOMAIN_SUGGESTIONS = {
   'gmil.com': 'gmail.com',
   'gmal.com': 'gmail.com',
@@ -41,7 +38,7 @@ const DOMAIN_SUGGESTIONS = {
   'rediffmail.co': 'rediffmail.com',
 };
 
-// Known valid domains
+
 const VALID_DOMAINS = [
   'gmail.com', 'yahoo.com', 'yahoo.in', 'yahoo.co.in',
   'hotmail.com', 'outlook.com', 'live.com',
@@ -50,7 +47,7 @@ const VALID_DOMAINS = [
   'yandex.com', 'gmx.com',
 ];
 
-// Disposable/temp email domains to block
+
 const DISPOSABLE_DOMAINS = [
   'mailinator.com', 'guerrillamail.com', 'tempmail.com', 'throwaway.email',
   'yopmail.com', 'sharklasers.com', 'guerrillamailblock.com', 'grr.la',
@@ -58,7 +55,7 @@ const DISPOSABLE_DOMAINS = [
   'getnada.com', 'mailnesia.com', 'maildrop.cc', '10minutemail.com',
 ];
 
-// Common weak passwords
+
 const COMMON_PASSWORDS = [
   'password', '123456', '12345678', '1234567890', 'qwerty', 'abc123',
   'password1', '111111', '123123', 'admin', 'letmein', 'welcome',
@@ -66,7 +63,7 @@ const COMMON_PASSWORDS = [
   'iloveyou', 'sunshine', 'password123', 'football', 'shadow',
 ];
 
-// Valid Indian TLDs
+
 const VALID_TLDS = [
   'com', 'in', 'co.in', 'net', 'org', 'edu', 'gov', 'io', 'co',
   'info', 'biz', 'me', 'us', 'uk', 'co.uk', 'ca', 'au', 'de',
@@ -75,17 +72,8 @@ const VALID_TLDS = [
   'xyz', 'tech', 'online', 'store', 'app', 'dev', 'ai',
 ];
 
-// ─── EMAIL VALIDATOR ──────────────────────────────────────────────────────────
-/**
- * Validates email with strict rules:
- * - Must match RFC pattern
- * - Must have valid TLD
- * - Checks for typo domains & suggests corrections
- * - Blocks disposable emails
- * 
- * @param {string} email 
- * @returns {{ valid: boolean, error?: string, suggestion?: string }}
- */
+
+
 export function validateEmail(email) {
   if (!email || !email.trim()) {
     return { valid: false, error: 'Email is required' };
@@ -93,7 +81,7 @@ export function validateEmail(email) {
 
   const trimmed = email.trim().toLowerCase();
 
-  // Basic structure check
+  
   const basicRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (!basicRegex.test(trimmed)) {
     return { valid: false, error: 'Please enter a valid email address (e.g. name@gmail.com)' };
@@ -101,7 +89,7 @@ export function validateEmail(email) {
 
   const [localPart, domain] = trimmed.split('@');
 
-  // Local part checks
+  
   if (localPart.length < 1) {
     return { valid: false, error: 'Email username is too short' };
   }
@@ -115,17 +103,17 @@ export function validateEmail(email) {
     return { valid: false, error: 'Email cannot have consecutive dots' };
   }
 
-  // Domain checks
+  
   if (!domain || domain.length < 3) {
     return { valid: false, error: 'Email domain is invalid' };
   }
 
-  // Check for disposable emails
+  
   if (DISPOSABLE_DOMAINS.includes(domain)) {
     return { valid: false, error: 'Temporary/disposable email addresses are not allowed. Please use a real email.' };
   }
 
-  // Check for typo domains and suggest correction
+  
   if (DOMAIN_SUGGESTIONS[domain]) {
     const corrected = `${localPart}@${DOMAIN_SUGGESTIONS[domain]}`;
     return {
@@ -135,19 +123,19 @@ export function validateEmail(email) {
     };
   }
 
-  // Validate TLD
+  
   const domainParts = domain.split('.');
   const tld = domainParts.slice(-2).join('.');
   const simpleTld = domainParts[domainParts.length - 1];
 
   if (!VALID_TLDS.includes(tld) && !VALID_TLDS.includes(simpleTld)) {
-    // Check if it's at least 2 chars long as a fallback
+    
     if (simpleTld.length < 2) {
       return { valid: false, error: 'Email domain extension is invalid' };
     }
   }
 
-  // Additional sanity check — domain must have at least one dot
+  
   if (domainParts.length < 2) {
     return { valid: false, error: 'Email domain is incomplete (e.g. use gmail.com, not gmail)' };
   }
@@ -156,14 +144,8 @@ export function validateEmail(email) {
 }
 
 
-// ─── PASSWORD VALIDATOR ───────────────────────────────────────────────────────
-/**
- * Validates password and returns detailed checklist.
- * Min 6, Max 15 characters.
- * 
- * @param {string} password 
- * @returns {{ valid: boolean, error?: string, checks: object, strength: number }}
- */
+
+
 export function validatePassword(password) {
   const checks = {
     minLength: password.length >= 6,
@@ -175,7 +157,7 @@ export function validatePassword(password) {
     notCommon: !COMMON_PASSWORDS.includes(password.toLowerCase()),
   };
 
-  // Calculate strength (0-100)
+  
   let strength = 0;
   if (checks.minLength) strength += 20;
   if (checks.hasUppercase) strength += 15;
@@ -200,11 +182,11 @@ export function validatePassword(password) {
     return { valid: false, error: 'This password is too common. Please choose a stronger one.', checks, strength: Math.min(strength, 20) };
   }
 
-  // All checks passed = valid (uppercase/lowercase/number/special are recommended but not blocking)
+  
   const hasComplexity = checks.hasUppercase && checks.hasLowercase && checks.hasNumber;
   if (!hasComplexity) {
     return {
-      valid: true, // Allow but warn
+      valid: true, 
       error: null,
       warning: 'Add uppercase, lowercase & numbers for a stronger password',
       checks,
@@ -216,30 +198,22 @@ export function validatePassword(password) {
 }
 
 
-// ─── PHONE VALIDATOR ──────────────────────────────────────────────────────────
-/**
- * Validates Indian phone number.
- * - Must be exactly 10 digits
- * - Must start with 6, 7, 8, or 9
- * - Auto-strips +91, 91, 0 prefixes
- * 
- * @param {string} phone 
- * @returns {{ valid: boolean, error?: string, cleaned: string }}
- */
+
+
 export function validatePhone(phone) {
   if (!phone || !phone.trim()) {
     return { valid: false, error: 'Mobile number is required', cleaned: '' };
   }
 
-  // Strip spaces, dashes, and common prefixes
+  
   let cleaned = phone.trim().replace(/[\s\-()]/g, '');
 
-  // Remove +91, 91, 0 prefix
+  
   if (cleaned.startsWith('+91')) cleaned = cleaned.slice(3);
   else if (cleaned.startsWith('91') && cleaned.length > 10) cleaned = cleaned.slice(2);
   else if (cleaned.startsWith('0') && cleaned.length > 10) cleaned = cleaned.slice(1);
 
-  // Must be all digits
+  
   if (!/^\d+$/.test(cleaned)) {
     return { valid: false, error: 'Mobile number must contain only digits', cleaned };
   }
@@ -252,7 +226,7 @@ export function validatePhone(phone) {
     return { valid: false, error: 'Mobile number must start with 6, 7, 8, or 9', cleaned };
   }
 
-  // Check for repeated digits (e.g. 9999999999)
+  
   if (/^(\d)\1{9}$/.test(cleaned)) {
     return { valid: false, error: 'Please enter a valid mobile number', cleaned };
   }
@@ -261,16 +235,8 @@ export function validatePhone(phone) {
 }
 
 
-// ─── NAME VALIDATOR ───────────────────────────────────────────────────────────
-/**
- * Validates name field.
- * - 2-50 characters
- * - Only letters, spaces, dots
- * - No consecutive spaces
- * 
- * @param {string} name 
- * @returns {{ valid: boolean, error?: string }}
- */
+
+
 export function validateName(name) {
   if (!name || !name.trim()) {
     return { valid: false, error: 'Name is required' };
@@ -298,15 +264,8 @@ export function validateName(name) {
 }
 
 
-// ─── PINCODE VALIDATOR ────────────────────────────────────────────────────────
-/**
- * Validates Indian pincode.
- * - Exactly 6 digits
- * - First digit must be 1-8
- * 
- * @param {string} pincode 
- * @returns {{ valid: boolean, error?: string }}
- */
+
+
 export function validatePincode(pincode) {
   if (!pincode || !pincode.trim()) {
     return { valid: false, error: 'Pincode is required' };
@@ -326,15 +285,8 @@ export function validatePincode(pincode) {
 }
 
 
-// ─── CITY VALIDATOR ───────────────────────────────────────────────────────────
-/**
- * Validates city name.
- * - 2-50 characters
- * - Only letters and spaces
- * 
- * @param {string} city 
- * @returns {{ valid: boolean, error?: string }}
- */
+
+
 export function validateCity(city) {
   if (!city || !city.trim()) {
     return { valid: false, error: 'City is required' };
@@ -358,15 +310,8 @@ export function validateCity(city) {
 }
 
 
-// ─── ADDRESS VALIDATOR ────────────────────────────────────────────────────────
-/**
- * Validates address line.
- * 
- * @param {string} address 
- * @param {boolean} required
- * @param {number} minLength 
- * @returns {{ valid: boolean, error?: string }}
- */
+
+
 export function validateAddress(address, required = true, minLength = 5) {
   if (!address || !address.trim()) {
     if (required) return { valid: false, error: 'Address is required' };
@@ -387,13 +332,8 @@ export function validateAddress(address, required = true, minLength = 5) {
 }
 
 
-// ─── AADHAAR VALIDATOR ────────────────────────────────────────────────────────
-/**
- * Validates Aadhaar number (12 digits, doesn't start with 0 or 1).
- * 
- * @param {string} aadhaar 
- * @returns {{ valid: boolean, error?: string }}
- */
+
+
 export function validateAadhaar(aadhaar) {
   if (!aadhaar || !aadhaar.trim()) {
     return { valid: false, error: 'Aadhaar number is required' };
@@ -409,13 +349,8 @@ export function validateAadhaar(aadhaar) {
 }
 
 
-// ─── PAN VALIDATOR ────────────────────────────────────────────────────────────
-/**
- * Validates PAN card number (format: ABCDE1234F).
- * 
- * @param {string} pan 
- * @returns {{ valid: boolean, error?: string }}
- */
+
+
 export function validatePAN(pan) {
   if (!pan || !pan.trim()) {
     return { valid: false, error: 'PAN number is required' };
@@ -428,13 +363,8 @@ export function validatePAN(pan) {
 }
 
 
-// ─── OTP VALIDATOR ────────────────────────────────────────────────────────────
-/**
- * Validates OTP (6 digits).
- * 
- * @param {string} otp 
- * @returns {{ valid: boolean, error?: string }}
- */
+
+
 export function validateOtp(otp) {
   if (!otp || !otp.trim()) {
     return { valid: false, error: 'OTP is required' };
@@ -446,14 +376,14 @@ export function validateOtp(otp) {
 }
 
 
-// ─── INPUT SANITIZERS ─────────────────────────────────────────────────────────
 
-/** Strips all non-digit characters from input */
+
+
 export function digitsOnly(value) {
   return value.replace(/\D/g, '');
 }
 
-/** Strips +91/91/0 prefix and non-digits, returns clean 10-digit phone */
+
 export function cleanPhone(value) {
   let cleaned = value.replace(/[\s\-()]/g, '').replace(/\D/g, '');
   if (cleaned.startsWith('91') && cleaned.length > 10) cleaned = cleaned.slice(2);
@@ -461,7 +391,7 @@ export function cleanPhone(value) {
   return cleaned.slice(0, 10);
 }
 
-/** Detects if input is a phone number or email */
+
 export function isPhoneInput(value) {
   const cleaned = value.trim().replace(/[\s\-+()]/g, '');
   return /^\d+$/.test(cleaned) && cleaned.length >= 7;

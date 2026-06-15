@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars, react-hooks/set-state-in-effect */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguageStore } from '../store/useLanguageStore';
@@ -29,7 +29,7 @@ const VoiceSearch = ({ onSearch, placeholder = "What do you need help with?" }) 
         const transcript = event.results[0][0].transcript;
         setQuery(transcript);
         setIsListening(false);
-        // Delay the search so the user can see what was typed and verify it
+        
         setTimeout(() => {
           if (onSearch) onSearch(transcript);
         }, 1500);
@@ -65,7 +65,7 @@ const VoiceSearch = ({ onSearch, placeholder = "What do you need help with?" }) 
       osc.start(ctx.currentTime);
       osc.stop(ctx.currentTime + 0.1);
     } catch (e) {
-      // Ignore audio context errors
+      
     }
   };
 
@@ -102,7 +102,7 @@ const VoiceSearch = ({ onSearch, placeholder = "What do you need help with?" }) 
     <div className="relative w-full max-w-2xl mx-auto">
       <form onSubmit={handleSubmit} className={`relative flex items-center bg-surface border-2 rounded-2xl shadow-card transition-all duration-300 ${isListening ? 'border-accent shadow-premium scale-[1.02]' : 'border-slate-200/60 hover:border-brand/30'}`}>
         
-        {/* Search Icon */}
+        {}
         <div className="pl-5 pr-3 text-slate-400">
           <span className="material-symbols-outlined text-[28px]">search</span>
         </div>
@@ -116,7 +116,7 @@ const VoiceSearch = ({ onSearch, placeholder = "What do you need help with?" }) 
           disabled={isListening}
         />
 
-        {/* Voice Button */}
+        {}
         <button
           type="button"
           onClick={toggleListening}
@@ -134,13 +134,13 @@ const VoiceSearch = ({ onSearch, placeholder = "What do you need help with?" }) 
           )}
         </button>
 
-        {/* Search Submit Button (Optional on Desktop) */}
+        {}
         <button type="submit" className="hidden md:flex btn-primary mr-2 !py-2.5 !rounded-xl">
           Search
         </button>
       </form>
 
-      {/* Error Message */}
+      {}
       <AnimatePresence>
         {error && (
           <motion.div

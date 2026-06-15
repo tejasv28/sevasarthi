@@ -65,7 +65,7 @@ public class ComplaintController {
         return user.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
     }
 
-    // --- CUSTOMER ENDPOINTS ---
+    
 
     @PostMapping
     public ResponseEntity<?> createComplaint(@RequestBody Complaint request) {
@@ -105,7 +105,7 @@ public class ComplaintController {
             if (!rental.getUserId().equals(currentUser.getId())) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ApiResponse<>(403, null, "This rental does not belong to you."));
             }
-            // providerId needs to be resolved from tool owner in a real app (simplified here)
+            
             referenceLabel = rental.getToolName() != null ? rental.getToolName() : "Tool Rental";
         }
 
@@ -247,7 +247,7 @@ public class ComplaintController {
         return ResponseEntity.ok(new ApiResponse<>(200, data, "References retrieved."));
     }
 
-    // --- ADMIN ENDPOINTS ---
+    
 
     @GetMapping("/admin/complaints")
     public ResponseEntity<?> getAllComplaints(
@@ -380,8 +380,8 @@ public class ComplaintController {
 
         complaintRepository.save(complaint);
 
-        // Normally here we would update provider TrustScore, Add Warnings, Suspend, etc based on `action`.
-        // Simplified for this phase.
+        
+        
 
         Map<String, Object> data = new HashMap<>();
         data.put("complaint", complaint);

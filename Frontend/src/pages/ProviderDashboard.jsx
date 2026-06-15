@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars, react-hooks/exhaustive-deps */
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import toast from 'react-hot-toast';
@@ -19,7 +19,7 @@ export default function ProviderDashboard() {
   const { setProviderStatus } = useAuthStore();
 
   useEffect(() => {
-    // If cached status isn't approved, double-check with backend before redirecting
+    
     if (providerStatus !== 'approved') {
       api.get('/providers/onboarding-status').then(res => {
         const freshStatus = res?.data?.verificationStatus;
@@ -41,7 +41,7 @@ export default function ProviderDashboard() {
   const [schedule, setSchedule] = useState([]);
   const [rentals, setRentals] = useState([]);
   const { fetchProviderRentals, updateRentalStatus } = useToolStore();
-  // Restore cached stats instantly on mount to avoid flash of zeros
+  
   const [stats, setStats] = useState(() => {
     try {
       const cached = sessionStorage.getItem('pd_stats');
@@ -93,13 +93,13 @@ export default function ProviderDashboard() {
   useEffect(() => { 
     fetchAll(); 
     
-    // New job request from a customer
+    
     const handleNewRequest = (data) => {
       toast('New job request!', { icon: '🔔' });
       
-      // Play localized audio alert
+      
       if ('speechSynthesis' in window) {
-        // Read fresh states from Zustand store
+        
         const currentLang = useLanguageStore.getState().language;
         const currentUserName = useAuthStore.getState().currentUser?.name || 'Provider';
         
@@ -113,9 +113,9 @@ export default function ProviderDashboard() {
 
         const utterance = new SpeechSynthesisUtterance(textToSpeak);
         utterance.lang = langCode;
-        utterance.rate = 0.85; // Slightly slower for clearer pronunciation
+        utterance.rate = 0.85; 
         
-        // Try to find a voice that matches the language
+        
         const voices = window.speechSynthesis.getVoices();
         const voice = voices.find(v => v.lang.startsWith(langCode.split('-')[0]));
         if (voice) {
@@ -126,43 +126,43 @@ export default function ProviderDashboard() {
       }
 
       setRequests(p => {
-        // Avoid duplicates
+        
         if (p.some(r => r._id === data._id)) return p;
         return [data, ...p];
       });
     };
 
-    // Booking status changed (accept, decline, en_route, working, completed)
+    
     const handleStatusUpdate = (data) => {
-      // Update the schedule list in real-time
+      
       const { bookingId, status } = data;
       
       if (status === 'accepted') {
-        // Move from requests to schedule
+        
         setRequests(p => p.filter(r => r._id !== bookingId));
         setSchedule(p => {
           if (p.some(s => s._id === bookingId)) {
             return p.map(s => s._id === bookingId ? { ...s, status } : s);
           }
-          return p; // Will be fetched by fetchAll
+          return p; 
         });
       } else if (status === 'cancelled') {
-        // Remove from both lists
+        
         setRequests(p => p.filter(r => r._id !== bookingId));
         setSchedule(p => p.filter(s => s._id !== bookingId));
       } else {
-        // Update status in schedule
+        
         setSchedule(p => p.map(s => s._id === bookingId ? { ...s, status } : s));
       }
 
-      // Refresh stats
+      
       fetchAll();
     };
 
     const handleNewRental = (data) => {
       toast('New tool rental request!', { icon: '🔧' });
 
-      // Play localized audio alert for tool rental
+      
       if ('speechSynthesis' in window) {
         const currentLang = useLanguageStore.getState().language;
         
@@ -284,7 +284,7 @@ export default function ProviderDashboard() {
     }
 
     try {
-      // Direct API call since we need to pass OTP and updateRentalStatus in store doesn't take otp
+      
       await api.put(`/rentals/${id}/status`, payload);
       toast.success(`Rental marked as ${status}`);
       fetchAll();
@@ -509,7 +509,7 @@ export default function ProviderDashboard() {
                   </div>
                 </div>
 
-                {/* Active Tool Rentals Section removed from here, moved to Tools tab */}
+                {}
               </div>
             </motion.div>
           )}

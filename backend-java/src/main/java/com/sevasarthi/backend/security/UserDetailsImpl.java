@@ -33,7 +33,7 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     public static UserDetailsImpl build(User user) {
-        // In the Node app, role was a string (e.g. "USER", "PROVIDER", "ADMIN")
+        
         List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getRole().toUpperCase()));
 
         return new UserDetailsImpl(
@@ -73,7 +73,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        // For Spring Security, we'll use email as the primary username if available, else phone
+        
         return email != null ? email : phone;
     }
 

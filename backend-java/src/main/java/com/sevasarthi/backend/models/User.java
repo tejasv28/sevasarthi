@@ -24,7 +24,7 @@ public class User {
     private String phone;
     
     @Builder.Default
-    private String role = "user"; // Using string for now, could be an Enum
+    private String role = "user"; 
     
     private String avatar;
     private Address address;

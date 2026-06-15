@@ -44,8 +44,8 @@ public class PushController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse<>(404, null, "User not found"));
         }
 
-        // Placeholder logic: in a real application, you would save the subscription
-        // to the user's document to send Web Push notifications via VAPID.
+        
+        
         
         return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse<>(201, null, "Subscribed to push notifications (Placeholder)"));
     }

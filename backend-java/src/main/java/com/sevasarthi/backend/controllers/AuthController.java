@@ -108,7 +108,7 @@ public class AuthController {
         String signupMethod = signUpRequest.getSignupMethod();
         String otpToken = signUpRequest.getOtpToken();
 
-        // Verify OTP Token for non-providers
+        
         if (!"provider".equals(role) && signupMethod != null) {
             String key = "email".equals(signupMethod) ? email : phone;
             OtpService.OtpData stored = otpService.getOtpData(key);
@@ -164,7 +164,7 @@ public class AuthController {
                     .city(signUpRequest.getCity() != null ? signUpRequest.getCity() : "")
                     .fullAddress(signUpRequest.getFullAddress() != null ? signUpRequest.getFullAddress() : "")
                     .pincode(signUpRequest.getPincode() != null ? signUpRequest.getPincode() : "")
-                    // Need to map documents properly
+                    
                     .verificationStatus("pending")
                     .createdAt(new Date())
                     .build();
@@ -178,7 +178,7 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
-        String refreshToken = jwt; // Using JWT as a placeholder refresh token for simplicity
+        String refreshToken = jwt; 
         user.setRefreshToken(refreshToken);
         userRepository.save(user);
 
@@ -329,7 +329,7 @@ public class AuthController {
                 user = userRepository.save(user);
             }
 
-            // In Spring, we should create an authentication token manually for OAuth users since they don't have a password in our DB
+            
             UserDetailsImpl userDetails = UserDetailsImpl.build(user);
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -611,7 +611,7 @@ public class AuthController {
         if ("email".equals(type)) {
             emailService.sendOtpEmail(email, otp, "Verify Your Email - Seva Sarthi");
         } else {
-            // Mock SMS sending here
+            
             System.out.println("Mock sending SMS OTP " + otp + " to " + phone);
         }
 
@@ -663,7 +663,7 @@ public class AuthController {
         String verifyToken = generateRandomToken();
         stored.verified = true;
         stored.verifyToken = verifyToken;
-        stored.expires = System.currentTimeMillis() + 15 * 60 * 1000; // Extend 15 mins for registration
+        stored.expires = System.currentTimeMillis() + 15 * 60 * 1000; 
 
         Map<String, Object> data = new HashMap<>();
         data.put("verified", true);

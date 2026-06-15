@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import React, { useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -71,7 +71,7 @@ export default function ProviderProfile() {
           <span className="material-symbols-outlined text-lg">arrow_back</span> Back
         </button>
         
-        {/* Header Profile Card */}
+        {}
         <header className="mb-8 bg-surface rounded-3xl p-8 md:p-10 shadow-card border border-slate-200/60 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3"></div>
           
@@ -115,7 +115,7 @@ export default function ProviderProfile() {
           
           <div className="lg:col-span-8 space-y-8">
             
-            {/* Navigation Tabs */}
+            {}
             <div className="flex items-center gap-6 border-b border-slate-200 overflow-x-auto scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
               {['about', 'portfolio', 'reviews'].map(tab => (
                 <button 
@@ -181,7 +181,7 @@ export default function ProviderProfile() {
               {activeTab === 'reviews' && (
                 <motion.div key="reviews" initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-10}} className="space-y-8">
                   
-                  {/* Detailed Rating Breakdown */}
+                  {}
                   <section className="bg-surface rounded-3xl p-8 shadow-sm border border-slate-200/60">
                     <h2 className="text-xl font-extrabold font-headline text-brand mb-6">Rating & Reviews</h2>
                     
@@ -213,7 +213,7 @@ export default function ProviderProfile() {
                     </div>
                   </section>
 
-                  {/* Individual Reviews */}
+                  {}
                   <section className="space-y-4">
                     {reviews.length === 0 ? (
                       <div className="text-center py-8 text-slate-500 font-medium">No reviews yet.</div>
@@ -255,7 +255,7 @@ export default function ProviderProfile() {
 
           </div>
 
-          {/* Sticky Booking Sidebar */}
+          {}
           <aside className="lg:col-span-4">
             <div className="sticky top-28 space-y-6">
               <div className="bg-surface rounded-3xl shadow-card border border-slate-200/60 p-8 text-center">

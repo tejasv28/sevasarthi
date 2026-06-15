@@ -31,7 +31,7 @@ public class AiController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, null, "Message is required."));
         }
 
-        // Placeholder for Gemini AI integration
+        
         Map<String, Object> responseData = new HashMap<>();
         responseData.put("response", "AI chat is currently under maintenance. Please try again later.");
         
@@ -49,7 +49,7 @@ public class AiController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, null, "Image data (base64) is required."));
         }
 
-        // Placeholder for Image analysis
+        
         Map<String, Object> responseData = new HashMap<>();
         responseData.put("description", "Image analysis is currently under maintenance.");
         responseData.put("category", "General");
@@ -68,7 +68,7 @@ public class AiController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, null, "Search query is required."));
         }
 
-        // Placeholder for Intent Extraction
+        
         Map<String, Object> responseData = new HashMap<>();
         responseData.put("category", "Cleaning");
         responseData.put("keywords", new String[]{query});

@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+
 export default {
   content: [
     "./index.html",
@@ -8,12 +8,12 @@ export default {
     extend: {
       colors: {
         "brand": {
-          DEFAULT: "#0F172A", // Deep Slate / Obsidian
+          DEFAULT: "#0F172A", 
           light: "#1E293B",
           dark: "#020617",
         },
         "accent": {
-          DEFAULT: "#F5A623", // Premium Golden Amber
+          DEFAULT: "#F5A623", 
           light: "#FBCB73",
           dark: "#D98A12",
         },

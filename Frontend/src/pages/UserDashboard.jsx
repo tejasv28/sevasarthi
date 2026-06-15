@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -10,9 +10,9 @@ import { useLanguageStore } from '../store/useLanguageStore';
 
 const RENTALS_STORAGE_KEY = 'sevaSarthi.rentals.v1';
 
-// Mock bookings removed. Real data fetched via useBookingStore.
-// mapStatusToUI and trackingSteps are now created inside the component
-// so they can use the t() translation function.
+
+
+
 
 import { useBookingStore } from '../store/useBookingStore';
 import { useToolStore } from '../store/useToolStore';
@@ -44,7 +44,7 @@ export default function UserDashboard() {
   ];
   const [rentals, setRentals] = useState([]);
   
-  // Feedback Modal State
+  
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
   const [feedbackJob, setFeedbackJob] = useState(null);
   const [rating, setRating] = useState(0);
@@ -57,19 +57,19 @@ export default function UserDashboard() {
     }
   }, [currentUser, fetchUserBookings, fetchUserRentals]);
 
-  // Real-time Booking Updates — events arrive via user's private socket room
+  
   useEffect(() => {
     const handleStatusUpdate = (data) => {
-      // { bookingId, status, timestamp, note }
+      
       useBookingStore.getState().updateBookingStatusLocal(data.bookingId, data.status);
       toast(`Booking status updated to ${data.status.replace('_', ' ').toUpperCase()}`, { icon: '🔄' });
-      // Also re-fetch from server to get full populated data
+      
       fetchUserBookings();
     };
 
-    // OTP codes arrive through the user's private socket room
+    
     const handleOtpUpdate = (data) => {
-      // { bookingId, otp?, completionOtp? }
+      
       useBookingStore.getState().updateBookingOtpLocal(data.bookingId, data);
       if (data.otp) {
         toast('Start Code received! Share it with your provider.', { icon: '🔑', duration: 6000 });
@@ -79,7 +79,7 @@ export default function UserDashboard() {
       }
     };
 
-    // New booking created (by this user) — refresh list
+    
     const handleNewNotification = (notif) => {
       if (notif.type === 'booking') {
         fetchUserBookings();
@@ -108,7 +108,7 @@ export default function UserDashboard() {
     toast.loading('Finding a new professional...', { id: 'REASSIGN' });
     setTimeout(() => {
       toast.success('Successfully reassigned to Vikash Sharma.', { id: 'REASSIGN' });
-      // Logic handled via backend in production
+      
     }, 2000);
   };
 
@@ -169,7 +169,7 @@ export default function UserDashboard() {
   return (
     <div className="min-h-screen bg-surface-muted pb-24 relative">
       
-      {/* Header */}
+      {}
       <header className="pt-10 pb-8 relative z-10">
         <div className="section-container flex flex-col md:flex-row justify-between md:items-end gap-6">
           <div className="flex items-center gap-5">
@@ -201,10 +201,10 @@ export default function UserDashboard() {
       </header>
 
       <main className="section-container mt-6 grid grid-cols-1 xl:grid-cols-12 gap-8 relative z-10">
-        {/* Main Column */}
+        {}
         <div className="xl:col-span-8 space-y-8">
           
-          {/* Active Bookings with Tracking */}
+          {}
           <section>
             <div className="flex items-center justify-between mb-5">
               <h3 className="text-2xl font-extrabold font-headline text-slate-800">{t('ud_my_bookings')}</h3>
@@ -246,11 +246,11 @@ export default function UserDashboard() {
                     </div>
                   </div>
 
-                  {/* Tracking UI */}
+                  {}
                   <div className="bg-surface-muted rounded-2xl p-5 border border-slate-100 mb-6">
                     <h5 className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-4">{t('ud_job_progress')}</h5>
                     <div className="relative">
-                      {/* Progress Line */}
+                      {}
                       <div className="absolute top-4 left-4 right-4 h-1 bg-slate-200 rounded-full">
                         <div 
                           className="absolute top-0 left-0 h-full bg-accent rounded-full transition-all duration-1000" 
@@ -258,7 +258,7 @@ export default function UserDashboard() {
                         ></div>
                       </div>
                       
-                      {/* Steps */}
+                      {}
                       <div className="relative flex justify-between">
                         {trackingSteps.map((step, index) => {
                           const isActive = getStepIndex(uiStatus.id) >= index;
@@ -279,7 +279,7 @@ export default function UserDashboard() {
                     </div>
                   </div>
 
-                  {/* OTP / Start Code */}
+                  {}
                   {b.otp && (b.status === 'accepted' || b.status === 'en_route') && (
                     <div className="bg-brand text-surface p-4 rounded-xl mb-6 flex items-center justify-between shadow-sm">
                       <div>
@@ -292,7 +292,7 @@ export default function UserDashboard() {
                     </div>
                   )}
 
-                  {/* Completion Code */}
+                  {}
                   {b.completionOtp && b.status === 'working' && (
                     <div className="bg-emerald-600 text-surface p-4 rounded-xl mb-6 flex items-center justify-between shadow-sm">
                       <div>
@@ -305,7 +305,7 @@ export default function UserDashboard() {
                     </div>
                   )}
 
-                  {/* Actions & Reassign Warning */}
+                  {}
                   <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
                     {b.isProviderInactive ? (
                       <div className="flex items-center gap-3 bg-red-50 text-red-600 px-4 py-3 rounded-xl border border-red-100 w-full md:w-auto">
@@ -346,7 +346,7 @@ export default function UserDashboard() {
             </div>
           </section>
 
-          {/* Past Services & Feedback */}
+          {}
           <section className="bg-surface rounded-3xl shadow-card border border-slate-200/60 p-8">
             <h3 className="text-2xl font-extrabold font-headline text-slate-800 mb-6">{t('ud_completed')}</h3>
             <div className="overflow-x-auto">
@@ -390,7 +390,7 @@ export default function UserDashboard() {
             </div>
           </section>
 
-          {/* Past Tool Rentals */}
+          {}
           {rentals.filter(r => r.status === 'returned' || r.status === 'cancelled').length > 0 && (
             <section className="bg-surface rounded-3xl shadow-card border border-slate-200/60 p-8">
               <h3 className="text-2xl font-extrabold font-headline text-slate-800 mb-6">{t('ud_past_tool_rentals')}</h3>
@@ -427,9 +427,9 @@ export default function UserDashboard() {
           )}
         </div>
 
-        {/* Right Column */}
+        {}
         <div className="xl:col-span-4 space-y-8">
-          {/* Active Rentals Widget */}
+          {}
           <section className="bg-brand rounded-[2rem] p-7 text-surface relative overflow-hidden shadow-premium">
             <div className="absolute top-0 right-0 p-4 opacity-5"><span className="material-symbols-outlined text-[120px]">construction</span></div>
             <h3 className="text-xl font-bold font-headline mb-6 relative z-10 flex items-center gap-2 text-surface">
@@ -499,7 +499,7 @@ export default function UserDashboard() {
             </button>
           </section>
 
-          {/* Promotional / Recommended */}
+          {}
           <section className="bg-surface rounded-3xl shadow-card border border-slate-200/60 p-7">
             <h3 className="text-lg font-bold font-headline text-brand mb-5">{t('ud_recommended')}</h3>
             <div className="text-center p-4">
@@ -512,7 +512,7 @@ export default function UserDashboard() {
         </div>
       </main>
 
-      {/* Feedback Modal */}
+      {}
       <AnimatePresence>
         {showFeedbackModal && (
           <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-50 flex items-center justify-center bg-brand/40 backdrop-blur-sm px-4">

@@ -2,10 +2,7 @@ import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../store/useAuthStore';
 
-/**
- * Frontend-only role gate.
- * Usage: <RoleProtectedRoute allowedRoles={["admin"]}>...</RoleProtectedRoute>
- */
+
 export default function RoleProtectedRoute({ allowedRoles, children }) {
   const { currentUser, authLoading } = useAuthStore();
   const location = useLocation();

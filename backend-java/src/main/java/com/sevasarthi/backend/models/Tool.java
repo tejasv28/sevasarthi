@@ -36,7 +36,7 @@ public class Tool {
     @Builder.Default
     private String image = "";
     
-    private String ownerId; // Maps to User ObjectId
+    private String ownerId; 
     
     @Builder.Default
     private String status = "available";

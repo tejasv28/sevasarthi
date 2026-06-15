@@ -91,7 +91,7 @@ public class ReviewController {
                 .build();
 
         Booking booking = bookingOpt.get();
-        // Just mark logically that it is reviewed in booking (Optional: Add isReviewed to Booking schema)
+        
 
         Provider provider = providerOpt.get();
         if (provider.getRatingBreakdown() == null) provider.setRatingBreakdown(new HashMap<>());

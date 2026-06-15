@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../store/useAuthStore';
@@ -34,7 +34,7 @@ export default function ServiceDiscovery() {
   const { city } = useLocationStore();
   const { t } = useLanguageStore();
 
-  // State from navigation
+  
   const navState = location.state || {};
 
   const [searchTerm, setSearchTerm] = useState(navState.query || '');
@@ -50,7 +50,7 @@ export default function ServiceDiscovery() {
     fetchServices();
   }, [fetchServices, city]);
 
-  // Sync state when navigation changes
+  
   useEffect(() => {
     if (navState.dbCategory) {
       setDbCategoryFilter(navState.dbCategory);
@@ -77,7 +77,7 @@ export default function ServiceDiscovery() {
   const clearFilters = () => {
     setSearchTerm(''); setDbCategoryFilter(''); setKeywordsFilter([]); setDisplayName('');
     setMaxPrice(5000); setMinRating(0); setSortBy('relevance');
-    // Clear navigation state
+    
     window.history.replaceState({}, document.title);
   };
 
@@ -103,7 +103,7 @@ export default function ServiceDiscovery() {
     }
   };
 
-  /* ── INDUSTRY-LEVEL SMART FILTERING (powered by searchEngine) ── */
+  
   const filteredServices = useMemo(() => {
     return searchAndFilter(services, searchTerm, {
       dbCategory: dbCategoryFilter,
@@ -128,7 +128,7 @@ export default function ServiceDiscovery() {
     <div className="min-h-screen bg-slate-50 pt-8 pb-20">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Header & Search */}
+        {}
         <div className="mb-10">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
@@ -181,7 +181,7 @@ export default function ServiceDiscovery() {
           </div>
         </div>
 
-        {/* Category Landing View (no filters active) */}
+        {}
         {!isFiltered ? (
           <div className="space-y-12">
             {allCategories.map((cat) => {
@@ -208,10 +208,10 @@ export default function ServiceDiscovery() {
             })}
           </div>
         ) : (
-          /* Filtered Results View */
+          
           <div className="flex flex-col lg:flex-row gap-8">
 
-            {/* Sidebar Filters */}
+            {}
             <aside className="w-full lg:w-64 flex-shrink-0">
               <div className="bg-white rounded-2xl border border-slate-200 p-5 sticky top-24">
                 <div className="flex items-center justify-between mb-5">
@@ -255,7 +255,7 @@ export default function ServiceDiscovery() {
               </div>
             </aside>
 
-            {/* Results Grid */}
+            {}
             <div className="flex-grow">
               <div className="mb-5">
                 <p className="text-slate-500 font-medium text-sm">{filteredServices.length} {t('sd_professionals_found')}</p>

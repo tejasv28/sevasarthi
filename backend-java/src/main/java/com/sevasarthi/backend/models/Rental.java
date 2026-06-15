@@ -18,8 +18,8 @@ public class Rental {
     @Id
     private String id;
     
-    private String userId; // Maps to User ObjectId
-    private String toolId; // Maps to Tool ObjectId
+    private String userId; 
+    private String toolId; 
     
     private String toolName;
     private Integer days;

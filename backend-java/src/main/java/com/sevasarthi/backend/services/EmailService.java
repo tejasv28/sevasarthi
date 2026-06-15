@@ -41,7 +41,7 @@ public class EmailService {
             mailSender.send(message);
         } catch (MessagingException e) {
             System.err.println("Failed to send email to " + to + ": " + e.getMessage());
-            // Optionally log or rethrow
+            
         }
     }
 }

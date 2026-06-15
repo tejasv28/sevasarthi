@@ -14,21 +14,7 @@ export function loadRazorpayScript() {
   });
 }
 
-/**
- * Opens Razorpay checkout modal and handles the full payment flow:
- *   1. Create order on backend
- *   2. Open Razorpay modal
- *   3. Verify payment on backend (creates booking/rental)
- *
- * @param {Object} options
- * @param {number} options.amount       - Amount in INR (e.g. 549.00)
- * @param {'booking'|'rental'} options.type - Payment type
- * @param {Object} options.payload      - Booking or rental creation payload
- * @param {Object} options.user         - Current user { name, email, phone }
- * @param {Function} options.onSuccess  - Called with the created booking/rental
- * @param {Function} options.onError    - Called with error message
- * @param {Object} [options.metadata]   - Extra metadata for the order
- */
+
 export async function openRazorpayCheckout({
   amount,
   type,
@@ -45,7 +31,7 @@ export async function openRazorpayCheckout({
       return;
     }
 
-    // Step 1: Create order on backend
+    
     const orderRes = await api.post('/payments/create-order', {
       amount,
       type,
@@ -59,10 +45,10 @@ export async function openRazorpayCheckout({
 
     const { orderId, keyId } = orderRes.data;
 
-    // Step 2: Configure & open Razorpay checkout
+    
     const options = {
       key: keyId,
-      amount: Math.round(amount * 100), // paise
+      amount: Math.round(amount * 100), 
       currency: 'INR',
       name: 'Seva Sarthi',
       description: type === 'booking'
@@ -85,7 +71,7 @@ export async function openRazorpayCheckout({
       },
       handler: async function (response) {
         try {
-          // Step 3: Verify payment on backend
+          
           const verifyRes = await api.post('/payments/verify', {
             razorpay_order_id: response.razorpay_order_id,
             razorpay_payment_id: response.razorpay_payment_id,

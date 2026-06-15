@@ -20,7 +20,7 @@ import NotFound from "./pages/NotFound";
 import SevaAI from "./components/SevaAI";
 
 import { Toaster } from 'react-hot-toast';
-import SessionManager from "./components/SessionManager"; // New component for session timeouts
+import SessionManager from "./components/SessionManager"; 
 import socketService from "./lib/socket";
 import { useAuthStore } from "./store/useAuthStore";
 import { useNotificationStore } from "./store/useNotificationStore";
@@ -32,8 +32,8 @@ function App() {
   useEffect(() => {
     if (token) {
       socketService.connect(token);
-      // Start listening for real-time notifications once socket is connected
-      // Small delay to ensure socket is ready
+      
+      
       const timer = setTimeout(() => {
         useNotificationStore.getState().startListening();
         useNotificationStore.getState().fetchNotifications();
@@ -50,7 +50,7 @@ function App() {
     }
   }, [token]);
 
-  // Sync offline bookings when network returns
+  
   useEffect(() => {
     const handleOnline = () => {
       import('./store/useBookingStore').then(({ useBookingStore }) => {
@@ -58,7 +58,7 @@ function App() {
       });
     };
     window.addEventListener('online', handleOnline);
-    // Initial check on load
+    
     if (navigator.onLine) handleOnline();
 
     return () => window.removeEventListener('online', handleOnline);
@@ -84,13 +84,13 @@ function App() {
             },
             success: {
               iconTheme: {
-                primary: '#10B981', // Emerald
+                primary: '#10B981', 
                 secondary: '#fff',
               },
             },
             error: {
               iconTheme: {
-                primary: '#EF4444', // Red
+                primary: '#EF4444', 
                 secondary: '#fff',
               },
             }

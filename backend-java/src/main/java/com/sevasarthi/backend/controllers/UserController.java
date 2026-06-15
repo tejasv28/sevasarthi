@@ -120,9 +120,9 @@ public class UserController {
             bookingPage = bookingRepository.findByUserId(currentUser.getId(), pageable);
         }
 
-        // Ideally, we'd also populate Provider here using an Aggregation or manual lookups
-        // For simplicity, we just return the bookings. If the frontend requires populated provider details,
-        // it needs an aggregation pipeline or manual fetch.
+        
+        
+        
 
         Map<String, Object> pagination = new HashMap<>();
         pagination.put("total", bookingPage.getTotalElements());
@@ -159,7 +159,7 @@ public class UserController {
         long completedBookings = bookingRepository.countByUserIdAndStatus(userId, "completed");
         long activeRentals = rentalRepository.countByUserIdAndStatusNotIn(userId, Arrays.asList("returned", "cancelled"));
 
-        // Aggregate total spent
+        
         Aggregation agg = Aggregation.newAggregation(
                 Aggregation.match(Criteria.where("userId").is(userId).and("status").is("completed")),
                 Aggregation.group().sum("totalAmount").as("totalSpent")

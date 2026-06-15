@@ -2,16 +2,16 @@ import axios from 'axios';
 
 const api = axios.create({
   baseURL: 'http://localhost:8080/api',
-  withCredentials: true, // Important for cookies (if backend sets them)
+  withCredentials: true, 
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Request interceptor to attach JWT token
+
 api.interceptors.request.use(
   (config) => {
-    // Zustand persists auth state in localStorage under 'auth-storage'
+    
     try {
       const authStorage = localStorage.getItem('auth-storage');
       if (authStorage) {
@@ -28,15 +28,15 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response interceptor to handle global errors (like 401 Unauthorized)
+
 api.interceptors.response.use(
-  (response) => response.data, // Simplify response to just data
+  (response) => response.data, 
   (error) => {
-    // If we get a 401, it means token expired or invalid
+    
     if (error.response && error.response.status === 401) {
-      // We can trigger a logout here if needed
-      // useAuthStore.getState().logout() can be called from components, but calling it here causes circular dependency if not careful.
-      // We'll let components handle 401s for now or dispatch an event.
+      
+      
+      
       window.dispatchEvent(new Event('auth:unauthorized'));
     }
     return Promise.reject(error);

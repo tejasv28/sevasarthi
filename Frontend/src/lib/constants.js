@@ -1,5 +1,5 @@
-// src/lib/constants.js
-// Maps UI categories → actual DB categories for strong filtering
+
+
 
 export const heroCategories = [
   {
@@ -85,13 +85,13 @@ export const heroCategories = [
   }
 ];
 
-// Extra categories shown only in "All services" modal (Currently empty for simplified MVP)
+
 export const extraCategories = [];
 
-// Combined list for "All services" modal
+
 export const allCategories = [...heroCategories, ...extraCategories];
 
-// Helper: get all flat items from a category
+
 export function getCategoryItems(cat) {
   const items = [];
   cat.modal.forEach(section => {
@@ -100,7 +100,7 @@ export function getCategoryItems(cat) {
   return items;
 }
 
-// Kept for backward compat with ToolRentalPage
+
 export const toolCategoriesMap = [
   {
     title: "Power Tools",
@@ -125,9 +125,9 @@ export const toolCategoriesMap = [
   }
 ];
 
-// ─────────────────────────────────────────────────────────
-// NEW MOCK DATA FOR HOMEPAGE REDESIGN (Urban Company Style)
-// ─────────────────────────────────────────────────────────
+
+
+
 
 export const mostBookedServices = [
   { id: 1, title: "Intense Cleaning (2 Bathrooms)", rating: "4.8", reviews: "12K", price: "₹899", originalPrice: "₹1299", image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=500&auto=format&fit=crop", category: "Cleaning" },

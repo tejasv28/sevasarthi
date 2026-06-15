@@ -1,10 +1,10 @@
-/* eslint-disable no-unused-vars */
+
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import api from '../lib/axios';
 
-// ── Typing Indicator ──────────────────────────────────────────────
+
 function TypingDots() {
   return (
     <div className="flex items-center gap-1 px-4 py-3">
@@ -18,7 +18,7 @@ function TypingDots() {
   );
 }
 
-// ── Message Bubble ────────────────────────────────────────────────
+
 function MessageBubble({ msg, onAction }) {
   const isUser = msg.role === 'user';
   return (
@@ -45,14 +45,14 @@ function MessageBubble({ msg, onAction }) {
           {msg.content}
         </div>
 
-        {/* Image preview */}
+        {}
         {msg.image && (
           <div className="mt-2 rounded-xl overflow-hidden border border-slate-100 shadow-sm max-w-[200px]">
             <img src={msg.image} alt="Uploaded" className="w-full h-auto" />
           </div>
         )}
 
-        {/* Analysis Card */}
+        {}
         {msg.analysis && (
           <div className="mt-2 bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
             <div className="flex items-center justify-between">
@@ -94,7 +94,7 @@ function MessageBubble({ msg, onAction }) {
           </div>
         )}
 
-        {/* Action Buttons */}
+        {}
         {msg.actions?.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-2">
             {msg.actions.map((a, i) => (
@@ -113,7 +113,7 @@ function MessageBubble({ msg, onAction }) {
   );
 }
 
-// ── Main SevaAI Widget ────────────────────────────────────────────
+
 export default function SevaAI() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
@@ -127,21 +127,21 @@ export default function SevaAI() {
 
   const timeStr = () => new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
 
-  // Auto-scroll on new messages
+  
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, isLoading]);
 
-  // Focus input when opened
+  
   useEffect(() => {
     if (isOpen && inputRef.current) {
       setTimeout(() => inputRef.current?.focus(), 300);
     }
   }, [isOpen]);
 
-  // Add welcome message on first open
+  
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       setMessages([{
@@ -160,7 +160,7 @@ export default function SevaAI() {
     }
   }, [navigate]);
 
-  // ── Send Message ──────────────────────────────────────────
+  
   const sendMessage = async (text) => {
     if (!text.trim() || isLoading) return;
     const userMsg = { role: 'user', content: text.trim(), time: timeStr() };
@@ -193,12 +193,12 @@ export default function SevaAI() {
     }
   };
 
-  // ── Handle Image Upload ───────────────────────────────────
+  
   const handleImageUpload = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Validate
+    
     const validTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
     if (!validTypes.includes(file.type)) {
       setMessages(prev => [...prev, {
@@ -216,13 +216,13 @@ export default function SevaAI() {
     setShowQuickActions(false);
     setIsLoading(true);
 
-    // Read file as base64
+    
     const reader = new FileReader();
     reader.onload = async () => {
       const base64Full = reader.result;
       const base64Data = base64Full.split(',')[1];
 
-      // Add user message with image
+      
       setMessages(prev => [...prev, {
         role: 'user', content: '📷 Analyzing this image...', image: base64Full, time: timeStr(),
       }]);
@@ -248,7 +248,7 @@ export default function SevaAI() {
     };
     reader.readAsDataURL(file);
 
-    // Reset file input
+    
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
@@ -261,7 +261,7 @@ export default function SevaAI() {
 
   return (
     <>
-      {/* ── FAB Button ───────────────────────────────────────── */}
+      {}
       <AnimatePresence>
         {!isOpen && (
           <motion.button
@@ -278,13 +278,13 @@ export default function SevaAI() {
             <span className="material-symbols-outlined text-2xl sm:text-3xl transition-transform group-hover:rotate-12" style={{ fontVariationSettings: "'FILL' 1" }}>
               auto_awesome
             </span>
-            {/* Pulse ring */}
+            {}
             <span className="absolute inset-0 rounded-full bg-teal-400 animate-ping opacity-20" />
           </motion.button>
         )}
       </AnimatePresence>
 
-      {/* ── Chat Window ──────────────────────────────────────── */}
+      {}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -295,7 +295,7 @@ export default function SevaAI() {
             className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 z-[9999] w-full sm:w-[400px] h-[100dvh] sm:h-[600px] sm:max-h-[80vh] flex flex-col bg-slate-50 sm:rounded-3xl shadow-2xl shadow-black/20 border border-slate-200/60 overflow-hidden"
             id="seva-ai-window"
           >
-            {/* Header */}
+            {}
             <div className="bg-gradient-to-r from-teal-600 via-teal-600 to-emerald-700 px-5 py-4 flex items-center justify-between flex-shrink-0">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-white/15 backdrop-blur flex items-center justify-center border border-white/20">
@@ -326,7 +326,7 @@ export default function SevaAI() {
               </div>
             </div>
 
-            {/* Messages */}
+            {}
             <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-1 no-scrollbar">
               {messages.map((msg, i) => (
                 <MessageBubble key={i} msg={msg} onAction={handleAction} />
@@ -339,7 +339,7 @@ export default function SevaAI() {
                 </div>
               )}
 
-              {/* Quick Actions */}
+              {}
               {showQuickActions && messages.length <= 1 && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -366,10 +366,10 @@ export default function SevaAI() {
               )}
             </div>
 
-            {/* Input Bar */}
+            {}
             <div className="border-t border-slate-200 bg-white px-3 py-3 flex-shrink-0">
               <div className="flex items-center gap-2">
-                {/* Image Upload */}
+                {}
                 <input
                   type="file"
                   ref={fileInputRef}
@@ -387,7 +387,7 @@ export default function SevaAI() {
                   <span className="material-symbols-outlined text-xl">photo_camera</span>
                 </button>
 
-                {/* Text Input */}
+                {}
                 <form
                   onSubmit={(e) => { e.preventDefault(); sendMessage(input); }}
                   className="flex-1 flex items-center gap-2"

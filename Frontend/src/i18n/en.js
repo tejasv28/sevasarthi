@@ -1,5 +1,5 @@
 const en = {
-  // ─── Navigation / Layout ──────────────────────────────────
+  
   nav_services: "Services",
   nav_rentals: "Rentals",
   nav_dashboard: "Dashboard",
@@ -14,11 +14,11 @@ const en = {
   nav_set_city: "Set City",
   nav_mark_all_read: "Mark all read",
 
-  // ─── Notifications ────────────────────────────────────────
+  
   notifications: "Notifications",
   no_notifications: "You're all caught up!",
 
-  // ─── Footer ───────────────────────────────────────────────
+  
   footer_desc: "Premium home services and professional tool rental platform dedicated to quality, speed, and trust.",
   footer_company: "Company",
   footer_about: "About Us",
@@ -36,7 +36,7 @@ const en = {
   footer_copyright: "© 2026 Seva Sarthi. All rights reserved.",
   footer_made_in: "Made with care in India",
 
-  // ─── Landing Page ─────────────────────────────────────────
+  
   hero_badge: "Trusted by 10,000+ homes",
   hero_title: "Premium Home Services & Tool Rentals",
   hero_subtitle: "Trusted experts and quality tools, delivered to your doorstep.",
@@ -85,14 +85,14 @@ const en = {
   cta_explore: "Explore Services",
   cta_join_pro: "Join as Professional",
 
-  // Service categories (used in grids)
+  
   carpenter: "Carpenter",
   ac_repair: "AC Repair",
   painting: "Painting",
   pest_control: "Pest Control",
   gardening: "Gardening",
 
-  // ─── Service Discovery ────────────────────────────────────
+  
   sd_filters: "Filters & Search",
   sd_search_placeholder: "Search services...",
   sd_filters_label: "Filters",
@@ -123,7 +123,7 @@ const en = {
   sd_rating: "Rating",
   sd_sort_by: "Sort By",
 
-  // ─── Tool Rental ──────────────────────────────────────────
+  
   tr_search_placeholder: "Search equipment...",
   tr_equipment_types: "Equipment Types",
   tr_max_budget: "Max Budget",
@@ -133,7 +133,7 @@ const en = {
   tr_price_low_high: "Price: Low to High",
   tr_price_high_low: "Price: High to Low",
 
-  // ─── Authentication ───────────────────────────────────────
+  
   auth_create_account: "Create Account",
   auth_welcome_back: "Welcome Back",
   auth_join_network: "Join the premium home services network.",
@@ -164,7 +164,7 @@ const en = {
   auth_confirm_password: "Confirm Password",
   auth_back_to_login: "← Back to Login",
 
-  // ─── Booking Flow ─────────────────────────────────────────
+  
   book_step_schedule: "Schedule",
   book_step_details: "Details",
   book_step_payment: "Payment",
@@ -197,7 +197,7 @@ const en = {
   book_provider: "Provider",
   book_service: "Book New Service",
 
-  // ─── User Dashboard ───────────────────────────────────────
+  
   ud_welcome: "Welcome back",
   ud_active_bookings: "Active Bookings",
   ud_completed: "Completed",
@@ -218,7 +218,7 @@ const en = {
   ud_no_rentals_hint: "Rent professional tools from our curated catalog.",
   ud_browse_catalog: "Browse Catalog",
 
-  // ─── Provider Dashboard ───────────────────────────────────
+  
   pd_accepting_jobs: "Accepting Jobs",
   pd_not_accepting: "Not Accepting",
   pd_today_jobs: "Today's Jobs",
@@ -261,13 +261,13 @@ const en = {
   pd_action: "Action",
   pd_days: "Days",
 
-  // ─── 404 ──────────────────────────────────────────────────
+  
   not_found_title: "Page not found",
   not_found_hint: "No route matches",
   not_found_home: "Go to Home",
   not_found_browse: "Browse Services",
 
-  // ─── Common ───────────────────────────────────────────────
+  
   loading: "Loading...",
   error: "Error",
   success: "Success",
@@ -280,7 +280,7 @@ const en = {
   yes: "Yes",
   no: "No",
 
-  // ─── Dynamic Categories & Roles ─────────────────────────
+  
   cat_electrician: 'Electrician',
   cat_plumber: 'Plumber',
   cat_cleaning: 'Cleaning',
@@ -305,7 +305,7 @@ const en = {
   alert_new_job_request: 'You have a new job request!',
   alert_new_rental: 'You have a new tool rental request!',
 
-  // ─── BookingFlow ─────────────────────────────────────────
+  
   book_step_schedule: 'Schedule',
   book_step_details: 'Service Details',
   book_step_payment: 'Payment',
@@ -347,7 +347,7 @@ const en = {
   book_try_tomorrow: 'Please select tomorrow or another date.',
   book_provider: 'Provider',
 
-  // ─── UserDashboard ────────────────────────────────────────
+  
   ud_manage_services: 'Manage your services and track progress.',
   ud_raise_complaint: 'Raise Complaint',
   ud_my_complaints: 'My Complaints',
@@ -381,7 +381,7 @@ const en = {
   ud_comment_placeholder: 'Tell us what you liked or what could be improved...',
   ud_submit_feedback: 'Submit Feedback',
 
-  // ─── ProviderDashboard ────────────────────────────────────
+  
   pd_total_jobs_completed: 'Total Jobs Completed',
   pd_all_time: 'All time',
   pd_this_week: 'This week',
@@ -432,7 +432,7 @@ const en = {
   pd_no_image: 'No image',
   pd_per_day: '/ day',
 
-  // ─── UserDashboard Status & Tracking ────────────────────
+  
   ud_status_pending:   'Waiting for Acceptance',
   ud_status_accepted:  'Assigned to Provider',
   ud_status_enroute:   'Provider En-Route',
@@ -446,7 +446,7 @@ const en = {
   pd_approval_pending:  'Pending',
   pd_approval_rejected: 'Rejected',
 
-  // ─── Missing Landing Page ─────────────────────────────────
+  
   lp_hero_title: 'Home services at your doorstep',
   lp_all_services: 'All services',
   lp_offers_title: 'Offers & Discounts',
@@ -473,7 +473,7 @@ const en = {
   lp_feature3_title: 'Dedicated Support',
   lp_feature3_desc: 'We are here for you 24/7.',
 
-  // ─── Missing Service Discovery ────────────────────────────
+  
   sd_back_to_all: 'Back to all categories',
   sd_ai_search: 'AI Search',
   sd_try_search: 'Try: "my fan is making noise", "need to fix leaking tap", "wash my sofa"',
@@ -490,7 +490,7 @@ const en = {
   sd_view_profile: 'View Profile',
   sd_professionals_found: 'professionals found',
 
-  // ─── Missing Tool Rental ──────────────────────────────────
+  
   tr_depot_title: 'Tool Depot',
   tr_depot_desc: 'Commercial-grade equipment delivered instantly to your door. Rent by the day, week, or month.',
   tr_configure: 'Configure Rental',
@@ -541,7 +541,7 @@ const en = {
   tr_delivery: 'Delivery',
   tr_address: 'Address',
 
-  // ─── Navbar & Dropdowns ──────────────────────────────────
+  
   nav_set_location: 'Set Location',
   explore_all_services: 'Explore All Services',
   nav_search_for: 'Search for',

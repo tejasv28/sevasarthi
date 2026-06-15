@@ -30,17 +30,17 @@ public class Coupon {
     private boolean showOnHome = false;
     
     @Builder.Default
-    private String userType = "all"; // all, new
+    private String userType = "all"; 
     
     private String code;
-    private String discountType; // flat, percent
+    private String discountType; 
     private Double discountValue;
     
     @Builder.Default
     private Double minOrderAmount = 0.0;
     
-    private Double maxDiscount; // null means no cap
-    private Integer maxUses; // null means unlimited
+    private Double maxDiscount; 
+    private Integer maxUses; 
     
     @Builder.Default
     private Integer usedCount = 0;

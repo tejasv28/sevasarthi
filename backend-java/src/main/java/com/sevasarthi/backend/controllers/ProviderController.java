@@ -218,12 +218,12 @@ public class ProviderController {
         provider.setAvailable(newStatus);
         providerRepository.save(provider);
 
-        // Update all services
+        
         List<Service> services = serviceRepository.findByProviderId(currentUser.getId());
         services.forEach(s -> s.setActive(newStatus));
         serviceRepository.saveAll(services);
 
-        // Update tools
+        
         List<Tool> tools = toolRepository.findByOwnerId(currentUser.getId());
         tools.forEach(t -> {
             if (Constants.ToolStatus.AVAILABLE.equals(t.getStatus()) || Constants.ToolStatus.MAINTENANCE.equals(t.getStatus())) {
@@ -252,14 +252,14 @@ public class ProviderController {
         Date today = Date.from(todayLocal.atStartOfDay(ZoneId.systemDefault()).toInstant());
         Date tomorrow = Date.from(todayLocal.plusDays(1).atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-        // Simple mock of stats to avoid overly complex aggregations that might fail
-        // In a real app we'd map all the counts carefully.
-        long todayBookings = bookingRepository.countByProviderId(providerId); // Simplified
-        long pendingRequests = bookingRepository.countByProviderId(providerId); // Simplified
+        
+        
+        long todayBookings = bookingRepository.countByProviderId(providerId); 
+        long pendingRequests = bookingRepository.countByProviderId(providerId); 
         double weeklyEarnings = 0.0;
         double totalEarnings = 0.0;
         
-        // Let's do at least the total earnings properly
+        
         Aggregation totalEarningsAgg = Aggregation.newAggregation(
                 Aggregation.match(Criteria.where("providerId").is(providerId).and("status").is("completed")),
                 Aggregation.group().sum("totalAmount").as("total")
@@ -274,9 +274,9 @@ public class ProviderController {
 
         Map<String, Object> data = new HashMap<>();
         data.put("isAvailable", provider.isAvailable());
-        data.put("todayJobs", todayBookings); // Mocked sum
-        data.put("pendingRequests", pendingRequests); // Mocked sum
-        data.put("weeklyEarnings", weeklyEarnings); // Mocked sum
+        data.put("todayJobs", todayBookings); 
+        data.put("pendingRequests", pendingRequests); 
+        data.put("weeklyEarnings", weeklyEarnings); 
         data.put("totalEarnings", totalEarnings);
         data.put("rating", provider.getRating());
         data.put("jobsCompleted", totalCompleted);
@@ -312,8 +312,8 @@ public class ProviderController {
         Optional<Provider> providerOpt = providerRepository.findByUserId(currentUser.getId());
         if (providerOpt.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 
-        // Returning mocked earnings structure for now to preserve API signature
-        // In full impl, this uses $dateToString aggregation
+        
+        
         List<Map<String, Object>> earnings = new ArrayList<>();
         double totalEarnings = 0.0;
         

@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/useAuthStore';
@@ -49,7 +49,7 @@ const toolsData = [
   { icon: 'cleaning_bucket', titleKey: 'tool_cleaning', descKey: 'tool_cleaning_desc', image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=400&auto=format&fit=crop' },
 ];
 
-/* ── Category Modal (Urban Company style popup) ── */
+
 function CategoryModal({ category, onClose, navigate }) {
   const isAllServices = category === 'all';
   const cats = isAllServices ? allCategories : [category];
@@ -72,10 +72,10 @@ function CategoryModal({ category, onClose, navigate }) {
         className="fixed inset-0 z-[100] flex items-center justify-center p-4"
         onClick={onClose}
       >
-        {/* Backdrop */}
+        {}
         <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
 
-        {/* Modal Card */}
+        {}
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -84,7 +84,7 @@ function CategoryModal({ category, onClose, navigate }) {
           className="relative bg-white rounded-3xl shadow-2xl w-full max-w-[620px] max-h-[80vh] flex flex-col overflow-hidden z-10"
           onClick={e => e.stopPropagation()}
         >
-          {/* Close Button */}
+          {}
           <div className="absolute top-5 right-5 z-20">
             <button
               onClick={onClose}
@@ -97,10 +97,10 @@ function CategoryModal({ category, onClose, navigate }) {
           <div className="overflow-y-auto no-scrollbar p-8 pt-7 h-full">
             {cats.map((cat, catIdx) => (
               <div key={cat.id} className={catIdx > 0 ? 'mt-8 pt-8 border-t border-slate-100' : ''}>
-                {/* Category Title */}
+                {}
                 <h2 className="text-2xl font-extrabold text-slate-900 mb-6 pr-10">{cat.title}</h2>
 
-                {/* Sections */}
+                {}
                 {cat.modal.map((section, sIdx) => (
                   <div key={sIdx} className={sIdx > 0 ? 'mt-6' : ''}>
                     {section.subtitle && (
@@ -136,7 +136,7 @@ export default function LandingPage() {
   const { t } = useLanguageStore();
   const navigate = useNavigate();
   const { city, detectLocation } = useLocationStore();
-  const [activeModal, setActiveModal] = useState(null); // null | category obj | 'all'
+  const [activeModal, setActiveModal] = useState(null); 
   const [homeOffers, setHomeOffers] = useState([]);
 
   useEffect(() => {
@@ -185,11 +185,11 @@ export default function LandingPage() {
   return (
     <div className="bg-white min-h-screen">
 
-      {/* ═══════════ HERO SECTION (Urban Company Layout) ═══════════ */}
+      {}
       <section className="pt-8 pb-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
 
-          {/* ── Left Side ── */}
+          {}
           <div className="w-full lg:w-[42%] pt-4">
             <motion.h1
               initial="hidden" animate="visible" variants={fadeUp} custom={0}
@@ -197,7 +197,7 @@ export default function LandingPage() {
               dangerouslySetInnerHTML={{ __html: t('lp_hero_title') }}
             />
 
-            {/* Category Grid Card (Premium Layout) */}
+            {}
             <motion.div
               initial="hidden" animate="visible" variants={fadeUp} custom={1}
               className="bg-white rounded-[2rem] p-7 mb-6 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] border border-slate-100"
@@ -219,7 +219,7 @@ export default function LandingPage() {
                   );
                 })}
 
-                {/* All Services Tile */}
+                {}
                 <div
                   onClick={() => setActiveModal('all')}
                   className="flex flex-col items-center gap-3 cursor-pointer group"
@@ -235,7 +235,7 @@ export default function LandingPage() {
 
           </div>
 
-          {/* ── Right Side: Photo Collage (UC style) ── */}
+          {}
           <div className="w-full lg:w-[58%] hidden lg:block">
             <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={1} className="grid grid-cols-2 gap-4 h-[520px]">
               <div className="flex flex-col gap-4 h-full">
@@ -251,7 +251,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ═══════════ CATEGORY MODAL ═══════════ */}
+      {}
       {activeModal && (
         <CategoryModal
           category={activeModal}
@@ -260,7 +260,7 @@ export default function LandingPage() {
         />
       )}
 
-      {/* ═══════════ OFFERS CAROUSEL ═══════════ */}
+      {}
       {homeOffers.length > 0 && (
         <section className="py-12 bg-slate-50 border-t border-slate-200">
           <div className="section-container">
@@ -309,7 +309,7 @@ export default function LandingPage() {
         </section>
       )}
 
-      {/* ═══════════ MOST BOOKED SERVICES ═══════════ */}
+      {}
       <section className="py-16 bg-white border-t border-slate-100 overflow-hidden">
         <div className="section-container">
           <div className="flex justify-between items-end mb-10">
@@ -346,7 +346,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ═══════════ CATEGORY SHOWCASES ═══════════ */}
+      {}
       {categoryShowcases.map((catSection, sectionIdx) => (
         <section key={catSection.id} className={`py-16 ${sectionIdx % 2 !== 0 ? 'bg-slate-50' : 'bg-white'} border-t border-slate-100 overflow-hidden`}>
           <div className="section-container">
@@ -375,7 +375,7 @@ export default function LandingPage() {
         </section>
       ))}
 
-      {/* ═══════════ TOOL RENTAL HIGHLIGHT ═══════════ */}
+      {}
       <section className="py-20 bg-slate-900 border-t border-slate-800 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3" />
         <div className="section-container relative z-10">
@@ -408,7 +408,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ═══════════ NEW & NOTEWORTHY ═══════════ */}
+      {}
       <section className="py-20 bg-white border-t border-slate-100 overflow-hidden">
         <div className="section-container">
           <div className="text-center mb-14">
@@ -430,7 +430,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ═══════════ TOP RATED PROFESSIONALS ═══════════ */}
+      {}
       <section className="py-20 bg-slate-50 border-t border-slate-100">
         <div className="section-container">
           <div className="text-center mb-14">
@@ -470,7 +470,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ═══════════ WHY SEVA SARTHI ═══════════ */}
+      {}
       <section className="py-24 bg-white border-t border-slate-100">
         <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">

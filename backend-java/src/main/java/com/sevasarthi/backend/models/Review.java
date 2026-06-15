@@ -18,9 +18,9 @@ public class Review {
     @Id
     private String id;
     
-    private String userId; // Maps to User ObjectId
-    private String providerId; // Maps to Provider ObjectId
-    private String bookingId; // Maps to Booking ObjectId
+    private String userId; 
+    private String providerId; 
+    private String bookingId; 
     
     private Integer rating;
     

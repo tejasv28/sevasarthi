@@ -12,7 +12,7 @@ export const useComplaintStore = create((set, get) => ({
   loading: false,
   submitting: false,
 
-  // ── Customer Actions ──────────────────────────
+  
 
   fetchReferences: async () => {
     set({ loading: true });
@@ -102,7 +102,7 @@ export const useComplaintStore = create((set, get) => ({
     }
   },
 
-  // ── Admin Actions ──────────────────────────
+  
 
   fetchAdminComplaints: async (filters = {}) => {
     set({ loading: true });

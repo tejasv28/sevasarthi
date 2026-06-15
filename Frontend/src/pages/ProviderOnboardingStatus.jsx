@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -17,7 +17,7 @@ export default function ProviderOnboardingStatus() {
         const res = await api.get('/providers/onboarding-status');
         if (res.success) {
           setStatusData(res.data);
-          // If approved, update global auth store and redirect to dashboard
+          
           if (res.data.verificationStatus === 'approved') {
             useAuthStore.getState().setProviderStatus('approved');
             navigate('/provider/dashboard', { replace: true });
@@ -30,7 +30,7 @@ export default function ProviderOnboardingStatus() {
       }
     };
     fetchStatus();
-    // Poll every 30 seconds for status updates
+    
     const interval = setInterval(fetchStatus, 30000);
     return () => clearInterval(interval);
   }, [navigate]);
@@ -50,7 +50,7 @@ export default function ProviderOnboardingStatus() {
 
   return (
     <div className="min-h-screen bg-surface-muted flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Background decoration */}
+      {}
       <div className="absolute top-0 left-0 w-full h-[400px] bg-brand" />
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3" />
 
@@ -61,7 +61,7 @@ export default function ProviderOnboardingStatus() {
         className="w-full max-w-lg relative z-10"
       >
         <div className="bg-surface rounded-3xl p-8 sm:p-12 shadow-premium border border-slate-200/50">
-          {/* Logo */}
+          {}
           <div className="flex items-center gap-3 mb-10">
             <div className="w-10 h-10 bg-brand rounded-xl flex items-center justify-center">
               <span className="material-symbols-outlined text-surface text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>handyman</span>
@@ -71,7 +71,7 @@ export default function ProviderOnboardingStatus() {
 
           {status === 'pending' && (
             <div className="text-center">
-              {/* Animated hourglass */}
+              {}
               <div className="w-24 h-24 mx-auto mb-8 bg-amber-50 rounded-full flex items-center justify-center border-2 border-amber-200">
                 <motion.span
                   animate={{ rotateZ: [0, 180, 360] }}
@@ -84,7 +84,7 @@ export default function ProviderOnboardingStatus() {
                 Your application has been submitted successfully. Our team is reviewing your details and documents. This usually takes <strong>24-48 hours</strong>.
               </p>
 
-              {/* Application details */}
+              {}
               <div className="bg-slate-50 rounded-2xl p-6 text-left space-y-4 border border-slate-100 mb-8">
                 <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Application Details</h4>
                 <div className="flex items-center justify-between">
@@ -107,7 +107,7 @@ export default function ProviderOnboardingStatus() {
                 </div>
               </div>
 
-              {/* Status timeline */}
+              {}
               <div className="flex items-center justify-center gap-2 mb-8">
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center"><span className="material-symbols-outlined text-white text-lg">check</span></div>
@@ -165,7 +165,7 @@ export default function ProviderOnboardingStatus() {
           )}
         </div>
 
-        {/* Footer */}
+        {}
         <p className="text-center text-xs text-white/50 font-medium mt-6">
           Need help? Contact us at <span className="underline">support@sevasarthi.in</span>
         </p>
